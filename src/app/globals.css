@@ -2,7 +2,7 @@
 
 :root {
     /* Base */
-    --background: #f6ebc8; /* soft ivory, bukan putih murni */
+    --background: rgb(255, 249, 230); /* soft ivory, bukan putih murni */
     --foreground: #2a2418; /* cokelat tua hangat, lebih lembut dari hitam */
 
     /* Brand */
