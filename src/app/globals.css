@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root {
+    /* Base */
+    --background: #f6ebc8; /* soft ivory, bukan putih murni */
+    --foreground: #2a2418; /* cokelat tua hangat, lebih lembut dari hitam */
+
+    /* Brand */
+    --primary: #e4a827; /* classic gold, untuk tombol & elemen utama */
+    --second: #fffdf8; /* champagne, untuk background section / card */
+    --support: #8a620b; /* dark gold, untuk teks link & ikon di atas putih */
+    --accent: #b8860b; /* deep amber, untuk hover & highlight */
+    --border: #f8d77b; /* garis tipis warna pasir */
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: var(--primary);
+    --color-second: var(--second);
+    --color-support: var(--support);
+    --color-accent: var(--accent);
+    --color-border: var(--border);
+
+    --font-sans: var(--font-poppins);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), sans-serif;
+}
