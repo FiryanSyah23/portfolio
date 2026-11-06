@@ -8,10 +8,12 @@ import { cn } from "@/lib/utils";
 import HomeSection from "./section/HomeSection";
 import AboutSection from "./section/AboutSection";
 import { SectionProps } from "../types/types";
+import TechSection from "./section/TechSection";
 
 const sectionComponents: Record<string, React.ComponentType<SectionProps>> = {
     home: HomeSection,
     about: AboutSection,
+    skills: TechSection,
 };
 
 const menus = [
@@ -194,7 +196,7 @@ export default function Homepage() {
             </aside>
 
             {/* Content Area  */}
-            <main className="relative flex flex-1">
+            <main className="relative flex flex-1 ">
                 <button
                     type="button"
                     onClick={handleCloseProfile}
@@ -214,14 +216,10 @@ export default function Homepage() {
                         aria-hidden="true"
                     ></i>
                 </button>
-                <div
-                    className={cn(
-                        "w-full px-10 pb-10 pt-16",
-                        fadeIn("delay-1000"),
-                    )}
-                >
+
+                <div className={cn(fadeIn("delay-1000"), "flex-1")}>
                     {ActiveSection && (
-                        <div key={sectionMenu} className="animate-fade-in">
+                        <div key={sectionMenu} className="pt-10 px-8">
                             <ActiveSection onNavigate={handleSelectMenu} />
                         </div>
                     )}

@@ -3,7 +3,7 @@ import { TechStack } from "@/types/types";
 const dataSkills: TechStack[] = [
     // FRONTEND
     {
-        category: "Frontend Engineering",
+        category: "Frontend",
         icon: "ri-layout-line",
         items: [
             {
@@ -12,6 +12,13 @@ const dataSkills: TechStack[] = [
                 description:
                     "Mengembangkan interaksi dan fungsionalitas website.",
                 startDate: "2024-12-01",
+            },
+            {
+                name: "TypeScript",
+                logo: "/logo/ts.png",
+                description:
+                    "Menulis kode JavaScript yang lebih aman dan mudah dirawat dengan static typing.",
+                startDate: "2026-03-01", // ganti dengan tanggal kamu mulai pakai TypeScript
             },
             {
                 name: "React",
@@ -46,7 +53,7 @@ const dataSkills: TechStack[] = [
 
     // BACKEND
     {
-        category: "Backend Engineering",
+        category: "Backend",
         icon: "ri-server-line",
         items: [
             {

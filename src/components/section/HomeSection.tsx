@@ -8,19 +8,22 @@ export default function HomeSection({ onNavigate }: SectionProps) {
     ];
 
     return (
-        <section className="flex flex-col gap-6 py-16">
+        <section className="flex h-full pb-10 flex-col gap-6 justify-center">
             <span className="w-fit rounded-full bg-accent px-3 py-1 text-sm text-white">
                 Tersedia untuk proyek freelance
             </span>
 
-            <h1 className="text-4xl font-bold sm:text-5xl">
-                Halo, saya Firyan
-            </h1>
+            <h2 className="text-3xl font-bold sm:text-4xl">
+                Wujudkan Website Impianmu,{" "}
+                <span className="text-accent">Cepat dan Interaktif</span>
+            </h2>
 
             <p className="max-w-xl text-foreground/80">
-                Seorang Software Engineer yang hoby membangun website dan
-                aplikasi. Saya berfokus pada pengembangan yang fungsional,
-                tampilan yang menarik, dan pengalaman pengguna yang nyaman.
+                Saya membantu mewujudkan ide dan kebutuhan digitalmu menjadi
+                website yang modern, responsif, dan interaktif. Dengan
+                mengutamakan desain yang menarik, performa yang optimal, serta
+                pengalaman pengguna yang nyaman. Mari wujudkan website impianmu
+                bersama!
             </p>
 
             <div className="flex flex-wrap gap-3">

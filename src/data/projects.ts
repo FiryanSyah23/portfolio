@@ -49,7 +49,7 @@ const dataProjects: Project[] = [
         longDescription:
             "Situs web portofolio pribadi ini dibangun sepenuhnya dari awal menggunakan Next.js App Router, React, dan Tailwind CSS — dengan fokus kuat pada performa, aksesibilitas, dan standar UI modern. Proyek ini berfungsi sebagai pusat untuk memamerkan keterampilan teknis, pekerjaan proyek, dan perjalanan profesional saya sebagai pengembang. Transisi halaman yang mulus dan interaksi mikro diterapkan menggunakan Framer Motion, memberikan situs ini kesan halus seperti aplikasi. Tata letaknya sepenuhnya responsif, dioptimalkan untuk semua ukuran layar mulai dari tampilan seluler hingga desktop besar. Performa diprioritaskan melalui pengoptimalan Gambar bawaan Next.js, pemuatan lambat, dan konfigurasi metadata yang tepat untuk SEO. Portofolio menampilkan bagian khusus untuk proyek (dengan halaman studi kasus terperinci menggunakan perutean dinamis), ikhtisar keterampilan, bagian tentang, dan formulir kontak. Setiap halaman proyek secara dinamis merender konten dari sumber data terpusat, sehingga mudah untuk dipelihara dan diskalakan. Situs ini diterapkan di Vercel dengan CI/CD otomatis pada setiap dorongan ke cabang utama, yang mencerminkan praktik penerapan dunia nyata yang digunakan dalam lingkungan profesional.",
         category: "Website",
-        tech: ["Next.js", "React", "Javascript", "Tailwind CSS"],
+        tech: ["Next.js", "React", "Javascript",'typescript', "Tailwind CSS", "node.js"],
         image: "/imgProject/portfolio/portFolio.png",
         projectImg: [
             "/imgProject/portfolio/portFolio.png",
