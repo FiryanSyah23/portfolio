@@ -7,8 +7,9 @@ import Typewriter from "./TypeWriter";
 import { cn } from "@/lib/utils";
 import HomeSection from "./section/HomeSection";
 import AboutSection from "./section/AboutSection";
+import { SectionProps } from "../types/types";
 
-const sectionComponents: Record<string, React.ComponentType> = {
+const sectionComponents: Record<string, React.ComponentType<SectionProps>> = {
     home: HomeSection,
     about: AboutSection,
 };
@@ -21,12 +22,14 @@ const menus = [
     { id: "contact", label: "Contact", icon: "ri-contacts-book-2-line" },
 ];
 
-const divisions = [
+const roles = [
     "Software Engineer",
     "Front-end Developer",
     "Back-end Developer",
-    "Embedded System Enthusiast",
+    "Embedded Systems Enthusiast",
 ];
+
+const proTech = ["Next.js", "Expo", "Wordpress"];
 
 export default function Homepage() {
     const [sectionMenu, setSectionMenu] = useState<string | null>(null);
@@ -107,7 +110,7 @@ export default function Homepage() {
                                 className={cn(
                                     "w-full p-3 text-center duration-300 hover:bg-accent hover:text-white",
                                     sectionMenu === menu.id &&
-                                        "bg-accent text-white",
+                                        "bg-primary text-white",
                                 )}
                             >
                                 <i
@@ -138,7 +141,7 @@ export default function Homepage() {
                         closeProfile ? "opacity-0" : "opacity-100",
                     )}
                 >
-                    <div className="size-60 overflow-hidden rounded-full border-2 border-border bg-accent">
+                    <div className="size-60 overflow-hidden rounded-full border-2 border-border bg-primary">
                         <Image
                             src="/profile.webp"
                             alt="Foto profil Firyan Syah"
@@ -153,10 +156,7 @@ export default function Homepage() {
                         <h1 className="text-3xl font-bold uppercase">
                             Firyan Syah
                         </h1>
-                        <Typewriter
-                            words={divisions}
-                            className="z-12 text-sm"
-                        />
+                        <Typewriter words={roles} className="z-12 text-sm" />
                     </div>
 
                     <div className="flex flex-wrap gap-1 justify-center w-full">
@@ -165,16 +165,30 @@ export default function Homepage() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className={cn(
-                                "inline-flex items-center justify-center gap-2 rounded-3xl border-2 border-primary px-4 py-2 text-sm font-semibold text-support",
-                                "duration-300 hover:bg-primary hover:text-white",
+                                "inline-flex items-center justify-center gap-2 rounded-3xl border border-border px-4 py-2 text-sm font-semibold text-support",
+                                "duration-300 hover:bg-accent hover:text-white",
                             )}
                         >
                             <i
                                 className="ri-file-text-line"
                                 aria-hidden="true"
                             ></i>
-                            View CV
+                            Lihat CV
                         </a>
+                    </div>
+
+                    <div className="flex w-full items-center gap-2 flex-col">
+                        <h2>Profesional Tech</h2>
+                        <div className="flex gap-2">
+                            {proTech.map((items) => (
+                                <span
+                                    key={items}
+                                    className="bg-primary text-sm text-white py-0.5 px-2 rounded-full"
+                                >
+                                    {items}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </aside>
@@ -208,7 +222,7 @@ export default function Homepage() {
                 >
                     {ActiveSection && (
                         <div key={sectionMenu} className="animate-fade-in">
-                            <ActiveSection />
+                            <ActiveSection onNavigate={handleSelectMenu} />
                         </div>
                     )}
                 </div>

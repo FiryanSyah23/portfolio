@@ -1,0 +1,66 @@
+import { Project } from "@/types/types";
+const dataProjects: Project[] = [
+    {
+        title: "Digital Twins GUI",
+        slug: "digitalTwins2",
+        updatedAt: "2025-09-10",
+        description:
+            "Aplikasi ini dirancang untuk pengontrol panel surya. Itu dapat memantau dan menampilkan parameter listrik seperti tegangan, arus, dan daya.",
+        longDescription:
+            "Digital Twins GUI adalah aplikasi pemantauan real-time yang dikembangkan untuk mensimulasikan dan memvisualisasikan perilaku sistem panel surya. Aplikasi dibangun menggunakan Python dengan antarmuka GUI kustom, terhubung ke mikrokontroler Arduino melalui komunikasi serial (protokol UART) untuk mengumpulkan data sensor langsung. Ini menampilkan parameter listrik utama termasuk tegangan (V), arus (A), dan daya (W) secara real-time dengan grafik dinamis dan pembacaan numerik. Sistem ini dirancang mengikuti konsep Digital Twin — menciptakan representasi virtual dari pengaturan panel surya fisik — sehingga berguna untuk observasi, analisis, dan pembelajaran akademis. Proyek ini aktif digunakan di Laboratorium Teknik Elektro UIN Ar-Raniry sebagai sarana pendidikan untuk membantu mahasiswa memahami sistem energi surya dan akuisisi data. Firmware ditulis dalam C++ untuk sisi Arduino, menangani pembacaan sensor ADC dan transmisi data serial, sementara Python menangani penguraian data, pemrosesan, dan rendering GUI.",
+        category: "Desktop App",
+        tech: ["Python", "Arduino", "C/C++"],
+        image: "/imgProject/digitalTwins/digitalTwins.png",
+        projectImg: ["/imgProject/digitalTwins/digitalTwins.png"],
+        demo: "",
+        status: "Completed",
+        year: "2025",
+    },
+    {
+        title: "WEDLX",
+        slug: "wedlx",
+        updatedAt: "2024-10-13",
+        description:
+            "WEDLX adalah platform undangan pernikahan digital yang sepenuhnya responsif yang dirancang untuk menggantikan undangan cetak tradisional dengan pengalaman web yang modern dan interaktif.",
+        longDescription:
+            "WEDLX adalah platform undangan pernikahan digital yang sepenuhnya responsif yang dirancang untuk menggantikan undangan cetak tradisional dengan pengalaman web yang modern dan interaktif. Dibangun menggunakan JavaScript vanilla dengan fokus pada interaksi UI yang lancar, platform ini memberi pasangan cara elegan untuk berbagi hari istimewa mereka dengan tamu di semua perangkat. Fitur utama termasuk penghitung waktu mundur real-time ke tanggal pernikahan, galeri foto interaktif yang menampilkan momen pasangan, formulir RSVP yang berfungsi penuh untuk konfirmasi tamu, Google Maps yang tertanam untuk lokasi venue, dan animasi pembuka yang indah untuk kesan pertama yang mengesankan. Desainnya mengutamakan keanggunan dan keterbacaan dengan tipografi dan palet warna yang dipilih dengan cermat. Situs web ini ringan, memuat cepat, dan dioptimalkan untuk perangkat seluler — memastikan para tamu yang menggunakan ponsel cerdas mendapatkan pengalaman yang lancar. Proyek ini menunjukkan kemampuan untuk menghadirkan produk yang sempurna dan siap untuk klien dengan memperhatikan estetika dan fungsionalitas.",
+        category: "Website",
+        tech: ["Javascript"],
+        image: "/imgProject/wedlx/wedLX.png",
+        projectImg: [
+            "/imgProject/wedlx/wedLX.png",
+            "/imgProject/wedlx/homepage.png",
+            "/imgProject/wedlx/info-acara.png",
+            "/imgProject/wedlx/story.png",
+            "/imgProject/wedlx/gallery.png",
+            "/imgProject/wedlx/rsvp.png",
+            "/imgProject/wedlx/gift.png",
+        ],
+        demo: "https://firyansyah23.github.io/Wedlx/",
+        status: "Completed",
+        year: "2025",
+    },
+    {
+        title: "Personal Portfolio",
+        slug: "personal-portfolio",
+        updatedAt: "2026-06-22",
+        description:
+            "Situs web portofolio pribadi modern yang menampilkan proyek, keterampilan, dan perjalanan saya sebagai pengembang. Dibangun dengan fokus pada UI yang bersih, interaksi yang lancar, dan desain responsif.",
+        longDescription:
+            "Situs web portofolio pribadi ini dibangun sepenuhnya dari awal menggunakan Next.js App Router, React, dan Tailwind CSS — dengan fokus kuat pada performa, aksesibilitas, dan standar UI modern. Proyek ini berfungsi sebagai pusat untuk memamerkan keterampilan teknis, pekerjaan proyek, dan perjalanan profesional saya sebagai pengembang. Transisi halaman yang mulus dan interaksi mikro diterapkan menggunakan Framer Motion, memberikan situs ini kesan halus seperti aplikasi. Tata letaknya sepenuhnya responsif, dioptimalkan untuk semua ukuran layar mulai dari tampilan seluler hingga desktop besar. Performa diprioritaskan melalui pengoptimalan Gambar bawaan Next.js, pemuatan lambat, dan konfigurasi metadata yang tepat untuk SEO. Portofolio menampilkan bagian khusus untuk proyek (dengan halaman studi kasus terperinci menggunakan perutean dinamis), ikhtisar keterampilan, bagian tentang, dan formulir kontak. Setiap halaman proyek secara dinamis merender konten dari sumber data terpusat, sehingga mudah untuk dipelihara dan diskalakan. Situs ini diterapkan di Vercel dengan CI/CD otomatis pada setiap dorongan ke cabang utama, yang mencerminkan praktik penerapan dunia nyata yang digunakan dalam lingkungan profesional.",
+        category: "Website",
+        tech: ["Next.js", "React", "Javascript", "Tailwind CSS"],
+        image: "/imgProject/portfolio/portFolio.png",
+        projectImg: [
+            "/imgProject/portfolio/portFolio.png",
+            "/imgProject/portfolio/experience.png",
+            "/imgProject/portfolio/skills.png",
+            "/imgProject/portfolio/projects.png",
+        ],
+        demo: "https://firyansyah.my.id",
+        status: "Completed",
+        year: "2025",
+    },
+];
+
+export default dataProjects;
