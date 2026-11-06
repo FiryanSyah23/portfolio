@@ -1,5 +1,6 @@
 export type SectionProps = {
     onNavigate: (id: string) => void;
+    close: boolean;
 };
 
 export type TechItemWithCount = TechItem & { projectCount: number };

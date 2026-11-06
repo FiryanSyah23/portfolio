@@ -9,11 +9,13 @@ import HomeSection from "./section/HomeSection";
 import AboutSection from "./section/AboutSection";
 import { SectionProps } from "../types/types";
 import TechSection from "./section/TechSection";
+import PortfolioSection from "./section/PortfolioSection";
 
 const sectionComponents: Record<string, React.ComponentType<SectionProps>> = {
     home: HomeSection,
     about: AboutSection,
     skills: TechSection,
+    projects: PortfolioSection,
 };
 
 const menus = [
@@ -180,7 +182,9 @@ export default function Homepage() {
                     </div>
 
                     <div className="flex w-full items-center gap-2 flex-col">
-                        <h2 className="font-semibold text-sm">Profesional Tech </h2>
+                        <h2 className="font-semibold text-sm">
+                            Profesional Tech{" "}
+                        </h2>
                         <div className="flex gap-2">
                             {proTech.map((items) => (
                                 <span
@@ -196,7 +200,7 @@ export default function Homepage() {
             </aside>
 
             {/* Content Area  */}
-            <main className="relative flex flex-1 ">
+            <main className="relative flex min-h-0 min-w-0 flex-1 ">
                 <button
                     type="button"
                     onClick={handleCloseProfile}
@@ -217,10 +221,18 @@ export default function Homepage() {
                     ></i>
                 </button>
 
-                <div className={cn(fadeIn("delay-1000"), "flex-1")}>
+                <div
+                    className={cn(
+                        fadeIn("delay-1000"),
+                        "min-h-0 min-w-0 flex-1",
+                    )}
+                >
                     {ActiveSection && (
-                        <div key={sectionMenu} className="pt-10 px-8">
-                            <ActiveSection onNavigate={handleSelectMenu} />
+                        <div key={sectionMenu} className="h-full px-8 pt-10">
+                            <ActiveSection
+                                onNavigate={handleSelectMenu}
+                                close={closeProfile}
+                            />
                         </div>
                     )}
                 </div>
