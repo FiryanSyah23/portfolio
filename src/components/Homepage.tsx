@@ -116,7 +116,7 @@ export default function Homepage() {
                                 )}
                             >
                                 <i
-                                    className={cn(menu.icon, "ri-xl")}
+                                    className={cn(menu.icon, "ri-lg")}
                                     aria-hidden="true"
                                 ></i>
                             </button>
@@ -180,12 +180,12 @@ export default function Homepage() {
                     </div>
 
                     <div className="flex w-full items-center gap-2 flex-col">
-                        <h2>Profesional Tech</h2>
+                        <h2 className="font-semibold text-sm">Profesional Tech </h2>
                         <div className="flex gap-2">
                             {proTech.map((items) => (
                                 <span
                                     key={items}
-                                    className="bg-primary text-sm text-white py-0.5 px-2 rounded-full"
+                                    className="bg-primary text-xs font-semibold text-white py-0.5 px-2 rounded-full"
                                 >
                                     {items}
                                 </span>

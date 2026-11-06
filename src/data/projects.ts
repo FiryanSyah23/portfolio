@@ -38,7 +38,7 @@ const dataProjects: Project[] = [
         ],
         demo: "https://firyansyah23.github.io/Wedlx/",
         status: "Completed",
-        year: "2025",
+        year: "2024",
     },
     {
         title: "Personal Portfolio",
@@ -49,7 +49,15 @@ const dataProjects: Project[] = [
         longDescription:
             "Situs web portofolio pribadi ini dibangun sepenuhnya dari awal menggunakan Next.js App Router, React, dan Tailwind CSS — dengan fokus kuat pada performa, aksesibilitas, dan standar UI modern. Proyek ini berfungsi sebagai pusat untuk memamerkan keterampilan teknis, pekerjaan proyek, dan perjalanan profesional saya sebagai pengembang. Transisi halaman yang mulus dan interaksi mikro diterapkan menggunakan Framer Motion, memberikan situs ini kesan halus seperti aplikasi. Tata letaknya sepenuhnya responsif, dioptimalkan untuk semua ukuran layar mulai dari tampilan seluler hingga desktop besar. Performa diprioritaskan melalui pengoptimalan Gambar bawaan Next.js, pemuatan lambat, dan konfigurasi metadata yang tepat untuk SEO. Portofolio menampilkan bagian khusus untuk proyek (dengan halaman studi kasus terperinci menggunakan perutean dinamis), ikhtisar keterampilan, bagian tentang, dan formulir kontak. Setiap halaman proyek secara dinamis merender konten dari sumber data terpusat, sehingga mudah untuk dipelihara dan diskalakan. Situs ini diterapkan di Vercel dengan CI/CD otomatis pada setiap dorongan ke cabang utama, yang mencerminkan praktik penerapan dunia nyata yang digunakan dalam lingkungan profesional.",
         category: "Website",
-        tech: ["Next.js", "React", "Javascript",'typescript', "Tailwind CSS", "node.js"],
+        tech: [
+            "Next.js",
+            "React",
+            "Javascript",
+            "typescript",
+            "Tailwind CSS",
+            "node.js",
+            "vercel",
+        ],
         image: "/imgProject/portfolio/portFolio.png",
         projectImg: [
             "/imgProject/portfolio/portFolio.png",
@@ -59,7 +67,29 @@ const dataProjects: Project[] = [
         ],
         demo: "https://firyansyah.my.id",
         status: "Completed",
-        year: "2025",
+        year: "2026",
+    },
+    {
+        title: "Website Desa Gampong Keuramat",
+        slug: "website-desa-gampong-keuramat",
+        updatedAt: "2026-11-10",
+        description:
+            "Website resmi desa berbasis WordPress yang menyajikan profil desa, berita, dan informasi layanan masyarakat secara online.",
+        longDescription:
+            "Website Desa [Nama Desa] adalah website profil desa yang dibangun menggunakan WordPress untuk menjadi pusat informasi bagi warga dan pengunjung. Website ini memuat profil dan sejarah desa, struktur pemerintahan, berita dan pengumuman, galeri kegiatan, serta informasi kontak dan lokasi desa. Dengan WordPress sebagai CMS (Content Management System, yaitu sistem pengelola konten), perangkat desa bisa menambah dan mengubah konten sendiri tanpa harus menulis kode. Tampilan dibuat responsif agar nyaman diakses dari ponsel, karena sebagian besar warga mengakses internet lewat smartphone. Proyek ini menunjukkan kemampuan menyiapkan website yang praktis dan mudah dirawat sesuai kebutuhan klien.",
+        category: "Website",
+        tech: ["WordPress"],
+        image: "/imgProject/website-desa/cover.png",
+        projectImg: [
+            "/imgProject/website-desa/cover.png",
+            "/imgProject/website-desa/homepage.png",
+            "/imgProject/website-desa/profil.png",
+            "/imgProject/website-desa/berita.png",
+            "/imgProject/website-desa/galeri.png",
+        ],
+        demo: "https://alamat-website-desa.com",
+        status: "Completed",
+        year: "2026",
     },
 ];
 

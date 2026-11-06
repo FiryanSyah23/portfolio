@@ -70,13 +70,6 @@ const dataSkills: TechStack[] = [
                     "Membangun REST API dan layanan backend menggunakan Node.js.",
                 startDate: "2026-01-11",
             },
-            {
-                name: "Laravel",
-                logo: "/logo/laravel.png",
-                description:
-                    "Mengembangkan aplikasi web backend menggunakan framework PHP.",
-                startDate: "2026-02-01",
-            },
         ],
     },
 
@@ -127,6 +120,13 @@ const dataSkills: TechStack[] = [
                 description:
                     "Mengembangkan program untuk mikrokontroler dan sistem embedded.",
                 startDate: "2024-12-01",
+            },
+            {
+                name: "Python",
+                logo: "/logo/python.png",
+                description:
+                    "Membangun backend, automasi, dan layanan API menggunakan Python.",
+                startDate: "2026-01-01",
             },
         ],
     },

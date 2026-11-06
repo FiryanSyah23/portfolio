@@ -18,6 +18,14 @@ type TooltipState = {
     bottom?: number;
 };
 
+const HIDE_PROJECT_COUNT = new Set([
+    "Git",
+    "GitHub",
+    "Figma",
+    "Postman",
+    "Claude Code",
+]);
+
 export default function TechSection() {
     const [tooltip, setTooltip] = useState<TooltipState | null>(null);
 
@@ -67,7 +75,7 @@ export default function TechSection() {
                 {dataSkillsWithCount.map((cat) => (
                     <div
                         key={cat.category}
-                        className="flex items-start gap-12 py-3"
+                        className="flex items-center gap-12 py-3"
                     >
                         <h3 className="w-35 shrink-0 text-xs font-semibold">
                             {cat.category}
@@ -137,11 +145,13 @@ export default function TechSection() {
                         <p className="text-xs text-foreground/70">
                             {tooltip.description}
                         </p>
-                        <p className="text-xs text-accent">
-                            {tooltip.projectCount > 0
-                                ? `Dipakai di ${tooltip.projectCount} proyek`
-                                : "Belum dipakai di proyek yang ditampilkan"}
-                        </p>
+                        {!HIDE_PROJECT_COUNT.has(tooltip.name) && (
+                            <p className="text-xs text-accent">
+                                {tooltip.projectCount > 0
+                                    ? `Dipakai di ${tooltip.projectCount} proyek`
+                                    : "Belum dipakai di proyek yang ditampilkan"}
+                            </p>
+                        )}
                     </div>,
                     document.body,
                 )}
