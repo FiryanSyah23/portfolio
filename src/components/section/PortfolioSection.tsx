@@ -50,7 +50,7 @@ export default function PortfolioSection({ close }: SectionProps) {
                     <span className="text-accent">
                         Website, Desktop, dan Mobile
                     </span>{" "}
-                    yang Telah Saya Kerjakan
+                    yang telah saya kerjakan
                 </h2>
             )}
 

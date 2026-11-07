@@ -238,6 +238,7 @@ export default function Homepage() {
                     {ActiveSection && (
                         <div key={sectionMenu} className="h-full px-8 pt-10">
                             <ActiveSection
+                                key={sectionParam}
                                 onNavigate={handleSelectMenu}
                                 close={closeProfile}
                             />

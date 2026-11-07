@@ -17,19 +17,19 @@ const contacts = [
     {
         icon: "ri-whatsapp-line",
         label: "WhatsApp",
-        value: "+62 851-3588-6173",
+        value: "Firyan Syah",
         href: `https://wa.me/${WA_NUMBER}`,
     },
     {
         icon: "ri-github-line",
         label: "GitHub",
-        value: "github.com/firyansyah23",
+        value: "firyansyah23",
         href: "https://github.com/firyansyah23",
     },
     {
         icon: "ri-linkedin-box-line",
         label: "LinkedIn",
-        value: "linkedin.com/in/firyansyah",
+        value: "Firyan Syah",
         href: "https://www.linkedin.com/in/firyansyah",
     },
 ];

@@ -81,6 +81,13 @@ export default function AboutSection({ onNavigate }: Partial<SectionProps>) {
                     </button>
                     <button
                         type="button"
+                        onClick={() => onNavigate("projects")}
+                        className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:opacity-90"
+                    >
+                        Lihat Proyek
+                    </button>
+                    <button
+                        type="button"
                         onClick={() => onNavigate("contact")}
                         className="rounded-lg border border-border px-5 py-2.5 font-medium transition hover:bg-accent hover:text-white"
                     >
