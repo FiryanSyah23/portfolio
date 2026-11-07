@@ -11,12 +11,14 @@ import { SectionProps } from "../types/types";
 import TechSection from "./section/TechSection";
 import PortfolioSection from "./section/PortfolioSection";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import ContactSection from "./section/ContactSection";
 
 const sectionComponents: Record<string, React.ComponentType<SectionProps>> = {
     home: HomeSection,
     about: AboutSection,
     skills: TechSection,
     projects: PortfolioSection,
+    contact: ContactSection,
 };
 
 const menus = [

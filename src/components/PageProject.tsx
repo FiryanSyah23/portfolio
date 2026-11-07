@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 const badgeClass =
-    "text-[10px] bg-foreground py-0.5 px-1.5 rounded-full text-white";
+    "text-[10px] bg-foreground py-1 px-1.5 rounded-full text-white";
 
 type PageProjectProps = {
     project: Project;
@@ -35,7 +35,7 @@ export default function PageProject({
         {
             label: "Tech",
             value: (
-                <ul className="flex flex-wrap justify-end gap-1">
+                <ul className="flex flex-wrap justify-end  gap-1">
                     {project.tech.slice(0, 3).map((tech) => (
                         <li key={tech} className={badgeClass}>
                             {tech}
@@ -59,7 +59,6 @@ export default function PageProject({
         <div className={`flex gap-4 ${close ? "flex-row" : "flex-col p-2"}`}>
             <div className="flex flex-col gap-2 justify-between">
                 <div className="flex flex-col">
-                    {/* slideshow */}
                     <div
                         className={`${close ? "w-90 h-50" : "w-full h-70"} relative group border border-border rounded-md overflow-hidden`}
                     >
@@ -92,7 +91,6 @@ export default function PageProject({
                                     <i className="ri-arrow-right-s-line"></i>
                                 </button>
 
-                                {/* dot indikator */}
                                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
                                     {images.map((_, i) => (
                                         <button
@@ -111,15 +109,14 @@ export default function PageProject({
                         )}
                     </div>
 
-                    {/* statistik */}
-                    <dl className="flex flex-col gap-4 pt-4 divide-y divide-border/50">
+                    <dl className="flex flex-col pt-4 divide-y divide-border/50">
                         {stats.map((stat) => (
                             <div
                                 key={stat.label}
-                                className="flex justify-between gap-2 px-2 py-1 *:text-xs"
+                                className="flex justify-between gap-2 p-2 *:text-xs"
                             >
                                 <dt className="shrink-0">{stat.label}</dt>
-                                <dd className="text-primary text-right">
+                                <dd className="text-primary text-right font-semibold">
                                     {stat.value}
                                 </dd>
                             </div>
