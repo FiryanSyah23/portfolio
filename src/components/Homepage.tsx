@@ -10,6 +10,7 @@ import AboutSection from "./section/AboutSection";
 import { SectionProps } from "../types/types";
 import TechSection from "./section/TechSection";
 import PortfolioSection from "./section/PortfolioSection";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const sectionComponents: Record<string, React.ComponentType<SectionProps>> = {
     home: HomeSection,
@@ -36,20 +37,21 @@ const roles = [
 const proTech = ["Next.js", "Expo", "Wordpress"];
 
 export default function Homepage() {
-    const [sectionMenu, setSectionMenu] = useState<string | null>(null);
     const [closeProfile, setCloseProfile] = useState<boolean>(false);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [enableAnimation, setEnableAnimation] = useState<boolean>(false);
 
-    useEffect(() => {
-        const savedMenu = localStorage.getItem("sectionMenu");
-        const savedCloseProfile = localStorage.getItem("closeProfile");
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
-        if (savedMenu && menus.some((menu) => menu.id === savedMenu)) {
-            setSectionMenu(savedMenu);
-        } else {
-            setSectionMenu("home");
-        }
+    const sectionParam = searchParams.get("section");
+    const sectionMenu = menus.some((menu) => menu.id === sectionParam)
+        ? (sectionParam as string)
+        : "home";
+
+    useEffect(() => {
+        const savedCloseProfile = localStorage.getItem("closeProfile");
 
         if (savedCloseProfile !== null) {
             setCloseProfile(savedCloseProfile === "true");
@@ -58,11 +60,16 @@ export default function Homepage() {
         setIsLoaded(true);
     }, []);
 
-    const ActiveSection = sectionMenu ? sectionComponents[sectionMenu] : null;
+    const ActiveSection = sectionComponents[sectionMenu];
 
     function handleSelectMenu(id: string) {
-        setSectionMenu(id);
-        localStorage.setItem("sectionMenu", id);
+        const params = new URLSearchParams();
+        if (id !== "home") params.set("section", id);
+
+        const query = params.toString();
+        router.push(query ? `${pathname}?${query}` : pathname, {
+            scroll: false,
+        });
     }
 
     function handleCloseProfile() {
@@ -72,7 +79,6 @@ export default function Homepage() {
         localStorage.setItem("closeProfile", String(next));
     }
 
-    // Fade-in saat halaman dibuka, delay diatur per kolom
     function fadeIn(delay: string) {
         return cn(
             "transition-opacity duration-700 ease-out motion-reduce:transition-none",

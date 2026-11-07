@@ -59,11 +59,7 @@ export default function TechSection() {
         <section
             onScroll={hideTooltip}
             className={cn(
-                "flex h-full flex-col gap-6 overflow-y-auto pb-10 pr-2",
-                "[&::-webkit-scrollbar]:w-1",
-                "[&::-webkit-scrollbar-track]:bg-transparent",
-                "[&::-webkit-scrollbar-thumb]:bg-primary",
-                "[&::-webkit-scrollbar-thumb]:rounded-full",
+                "flex h-full flex-col gap-6 overflow-hidden pb-10 pr-2",
             )}
         >
             <h2 className="text-2xl font-bold">

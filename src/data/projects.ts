@@ -87,7 +87,7 @@ const dataProjects: Project[] = [
             "/imgProject/website-desa/berita.png",
             "/imgProject/website-desa/galeri.png",
         ],
-        demo: "https://alamat-website-desa.com",
+        demo: "https://gampongkeuramat.desa.id/",
         status: "Completed",
         year: "2026",
     },
