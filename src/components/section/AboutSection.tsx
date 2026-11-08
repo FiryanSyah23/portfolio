@@ -25,7 +25,7 @@ export default function AboutSection({ onNavigate }: Partial<SectionProps>) {
     return (
         <section
             className={cn(
-                "flex h-full flex-col gap-6 pb-10 group overflow-y-auto pr-2",
+                "flex h-full flex-col gap-6 pb-10 overflow-y-auto pr-2",
                 "[&::-webkit-scrollbar]:w-1",
                 "[&::-webkit-scrollbar-track]:bg-transparent",
                 "[&::-webkit-scrollbar-thumb]:bg-primary",

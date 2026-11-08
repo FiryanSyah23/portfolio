@@ -80,14 +80,19 @@ export default function PortfolioSection({ close }: SectionProps) {
                             className="flex flex-col h-full gap-2 rounded-md border border-border bg-background p-2 hover:scale-101 shadow-accent/70 hover:shadow-md duration-300"
                         >
                             {/* gambar portfolio */}
-                            <div className="w-full h-45 overflow-hidden rounded-sm">
+                            <div className="relative aspect-video w-full overflow-hidden rounded-sm bg-stone-100">
                                 <Image
                                     src={item.image}
                                     alt={`${item.title} thumbnail`}
-                                    width={400}
-                                    height={400}
+                                    fill
+                                    sizes="(min-width: 1024px) 33vw, 50vw"
                                     priority={index < 3}
-                                    className="h-full w-full object-cover object-center"
+                                    className={cn(
+                                        "duration-300",
+                                        item.fit === "contain"
+                                            ? "object-contain p-1"
+                                            : "object-cover object-top",
+                                    )}
                                 />
                             </div>
 
@@ -123,7 +128,7 @@ export default function PortfolioSection({ close }: SectionProps) {
                                 </div>
 
                                 <div
-                                    className={`grid gap-4 ${item.demo !== "" ? "grid-cols-2" : "grid-cols-1"} *:flex *:items-center *:justify-center *:hover:bg-accent *:duration-300`}
+                                    className={`grid gap-2 ${item.demo !== "" ? "grid-cols-2" : "grid-cols-1"} *:flex *:items-center *:justify-center *:hover:bg-accent *:duration-300 *:rounded-md`}
                                 >
                                     {item.demo !== "" && (
                                         <a

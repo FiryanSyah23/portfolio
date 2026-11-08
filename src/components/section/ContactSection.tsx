@@ -119,7 +119,7 @@ export default function ContactSection({ close }: Partial<SectionProps>) {
                 <p className="max-w-xl text-sm text-foreground/80">
                     Saya terbuka untuk proyek freelance, kolaborasi, maupun
                     sekadar diskusi soal teknologi. Pilih kanal yang paling
-                    nyaman buatmu, biasanya saya balas dalam 1x12 jam.
+                    nyaman buatmu, biasanya saya balas dalam 1x24 jam.
                 </p>
             </div>
 
@@ -135,11 +135,7 @@ export default function ContactSection({ close }: Partial<SectionProps>) {
                         <li key={item.label}>
                             <a
                                 href={item.href}
-                                target={
-                                    item.href.startsWith("mailto:")
-                                        ? undefined
-                                        : "_blank"
-                                }
+                                target={"_blank"}
                                 rel="noopener noreferrer"
                                 className={cn(
                                     "group flex items-center gap-3 rounded-xl border border-border/50 p-3 duration-300",

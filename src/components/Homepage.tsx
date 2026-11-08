@@ -103,7 +103,11 @@ export default function Homepage() {
                     "flex h-full w-12 flex-col items-center divide-y divide-border/50 border-r border-border/50 text-support",
                 )}
             >
-                <nav className="flex h-full w-12 flex-col items-center divide-y divide-border/50 border-r border-border/50 text-support">
+                <nav
+                    className={cn(
+                        "flex h-full w-12 flex-col items-center divide-y divide-border/50 border-r border-border/50 text-support",
+                    )}
+                >
                     {menus.map((menu, index) => (
                         <div
                             key={menu.id}
@@ -138,9 +142,10 @@ export default function Homepage() {
             {/* Profile Card */}
             <aside
                 aria-hidden={closeProfile}
+                inert={closeProfile}
                 className={cn(
                     "h-full shrink-0 overflow-hidden border-r border-border/50",
-                    closeProfile ? "w-0 border-r-0" : "w-80",
+                    closeProfile ? "w-0 border-r-0" : "w-75",
                     enableAnimation
                         ? "transition-[width,opacity] duration-500 ease-in-out"
                         : fadeIn("delay-850"),
@@ -148,12 +153,12 @@ export default function Homepage() {
             >
                 <div
                     className={cn(
-                        "flex h-full w-80 flex-col items-center justify-center gap-4 px-10 py-4",
+                        "flex h-full w-75 flex-col items-center justify-center gap-4 px-10 py-4",
                         enableAnimation && "transition-opacity duration-500",
                         closeProfile ? "opacity-0" : "opacity-100",
                     )}
                 >
-                    <div className="size-60 overflow-hidden rounded-full border-2 border-border bg-primary">
+                    <div className="size-50 overflow-hidden rounded-full border-2 border-border bg-primary">
                         <Image
                             src="/profile.webp"
                             alt="Foto profil Firyan Syah"

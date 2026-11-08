@@ -1,8 +1,29 @@
 import { Project } from "@/types/types";
 const dataProjects: Project[] = [
     {
+        title: "Website Desa Keuramat",
+        slug: "website-desa-keuramat",
+        updatedAt: "2026-11-10",
+        description:
+            "Website resmi desa berbasis WordPress yang menyajikan profil desa, berita, dan informasi layanan masyarakat secara online.",
+        longDescription:
+            "Website desa Keuramat adalah website profil desa yang dibangun menggunakan WordPress untuk menjadi pusat informasi bagi warga dan pengunjung. Website ini memuat profil dan sejarah desa, struktur pemerintahan, berita dan pengumuman, galeri kegiatan, serta informasi kontak dan lokasi desa. Dengan WordPress sebagai CMS (Content Management System, yaitu sistem pengelola konten), perangkat desa bisa menambah dan mengubah konten sendiri tanpa harus menulis kode. Tampilan dibuat responsif agar nyaman diakses dari ponsel, karena sebagian besar warga mengakses internet lewat smartphone. Proyek ini menunjukkan kemampuan menyiapkan website yang praktis dan mudah dirawat sesuai kebutuhan klien.",
+        category: "Website",
+        tech: ["WordPress"],
+        image: "/imgProject/gp-keuramat/homepage-keuramat.png",
+        projectImg: [
+            "/imgProject/gp-keuramat/homepage-keuramat.png",
+            "/imgProject/gp-keuramat/berita-keuramat.png",
+            "/imgProject/gp-keuramat/up-to-date-berita-keuramat.png",
+            "/imgProject/gp-keuramat/gmaps-keuramat.png",
+        ],
+        demo: "https://gampongkeuramat.desa.id/",
+        status: "Completed",
+        year: "2026",
+    },
+    {
         title: "Digital Twins GUI",
-        slug: "digitalTwins2",
+        slug: "digital-twins-2",
         updatedAt: "2025-09-10",
         description:
             "Aplikasi ini dirancang untuk pengontrol panel surya. Itu dapat memantau dan menampilkan parameter listrik seperti tegangan, arus, dan daya.",
@@ -10,6 +31,7 @@ const dataProjects: Project[] = [
             "Digital Twins GUI adalah aplikasi pemantauan real-time yang dikembangkan untuk mensimulasikan dan memvisualisasikan perilaku sistem panel surya. Aplikasi dibangun menggunakan Python dengan antarmuka GUI kustom, terhubung ke mikrokontroler Arduino melalui komunikasi serial (protokol UART) untuk mengumpulkan data sensor langsung. Ini menampilkan parameter listrik utama termasuk tegangan (V), arus (A), dan daya (W) secara real-time dengan grafik dinamis dan pembacaan numerik. Sistem ini dirancang mengikuti konsep Digital Twin — menciptakan representasi virtual dari pengaturan panel surya fisik — sehingga berguna untuk observasi, analisis, dan pembelajaran akademis. Proyek ini aktif digunakan di Laboratorium Teknik Elektro UIN Ar-Raniry sebagai sarana pendidikan untuk membantu mahasiswa memahami sistem energi surya dan akuisisi data. Firmware ditulis dalam C++ untuk sisi Arduino, menangani pembacaan sensor ADC dan transmisi data serial, sementara Python menangani penguraian data, pemrosesan, dan rendering GUI.",
         category: "Desktop App",
         tech: ["Python", "Arduino", "C/C++"],
+        fit: "contain",
         image: "/imgProject/digitalTwins/digitalTwins.png",
         projectImg: ["/imgProject/digitalTwins/digitalTwins.png"],
         demo: "",
@@ -52,11 +74,11 @@ const dataProjects: Project[] = [
         tech: [
             "Next.js",
             "React",
-            "Javascript",
-            "typescript",
+            "JavaScript",
+            "TypeScript",
             "Tailwind CSS",
-            "node.js",
-            "vercel",
+            "Node.js",
+            "Vercel",
         ],
         image: "/imgProject/portfolio/portFolio.png",
         projectImg: [
@@ -66,26 +88,6 @@ const dataProjects: Project[] = [
             "/imgProject/portfolio/projects.png",
         ],
         demo: "https://firyansyah.my.id",
-        status: "Completed",
-        year: "2026",
-    },
-    {
-        title: "Website Gampong Keuramat",
-        slug: "website-gampong-keuramat",
-        updatedAt: "2026-11-10",
-        description:
-            "Website resmi desa berbasis WordPress yang menyajikan profil desa, berita, dan informasi layanan masyarakat secara online.",
-        longDescription:
-            "Website Gampong Keuramat adalah website profil desa yang dibangun menggunakan WordPress untuk menjadi pusat informasi bagi warga dan pengunjung. Website ini memuat profil dan sejarah desa, struktur pemerintahan, berita dan pengumuman, galeri kegiatan, serta informasi kontak dan lokasi desa. Dengan WordPress sebagai CMS (Content Management System, yaitu sistem pengelola konten), perangkat desa bisa menambah dan mengubah konten sendiri tanpa harus menulis kode. Tampilan dibuat responsif agar nyaman diakses dari ponsel, karena sebagian besar warga mengakses internet lewat smartphone. Proyek ini menunjukkan kemampuan menyiapkan website yang praktis dan mudah dirawat sesuai kebutuhan klien.",
-        category: "Website",
-        tech: ["WordPress"],
-        image: "/imgProject/gp-keuramat/homepage-keuramat.png",
-        projectImg: [
-            "/imgProject/gp-keuramat/berita-keuramat.png",
-            "/imgProject/gp-keuramat/up-to-date-berita-keuramat.png",
-            "/imgProject/gp-keuramat/gmaps-keuramat.png",
-        ],
-        demo: "https://gampongkeuramat.desa.id/",
         status: "Completed",
         year: "2026",
     },

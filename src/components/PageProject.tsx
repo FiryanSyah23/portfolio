@@ -1,7 +1,7 @@
 "use client";
 
 import { Project } from "@/types/types";
-import { formatTanggal } from "@/lib/utils";
+import { cn, formatTanggal } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -67,9 +67,19 @@ export default function PageProject({
                                 key={images[currentSlide]}
                                 src={images[currentSlide]}
                                 alt={`${project.title} screenshot ${currentSlide + 1} dari ${images.length}`}
-                                width={800}
-                                height={500}
-                                className="w-full h-full object-cover object-center"
+                                fill
+                                sizes={
+                                    close
+                                        ? "360px"
+                                        : "(min-width: 1024px) 50vw, 100vw"
+                                }
+                                priority={currentSlide === 0}
+                                className={cn(
+                                    "duration-300",
+                                    project.fit === "contain"
+                                        ? "object-contain"
+                                        : "object-cover object-top",
+                                )}
                             />
                         )}
 

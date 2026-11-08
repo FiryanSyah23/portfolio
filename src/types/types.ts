@@ -16,6 +16,7 @@ export type Project = {
     longDescription: string;
     category: string;
     tech: string[];
+    fit?: "cover" | "contain";
     image: string;
     projectImg: string[];
     demo?: string;

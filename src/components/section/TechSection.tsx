@@ -1,6 +1,6 @@
 "use client";
 
-import dataSkillsWithCount from "@/lib/genereteTech";
+import dataSkillsWithCount from "@/lib/generateTech";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
@@ -57,7 +57,6 @@ export default function TechSection() {
 
     return (
         <section
-            onScroll={hideTooltip}
             className={cn(
                 "flex h-full flex-col gap-6 overflow-hidden pb-10 pr-2",
             )}
