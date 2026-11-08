@@ -56,7 +56,7 @@ export default function PageProject({
     ];
 
     return (
-        <div className={`flex gap-4 ${close ? "flex-row" : "flex-col p-2"}`}>
+        <div className={`flex gap-4 max-md:flex-col ${close ? "flex-row" : "flex-col p-2"}`}>
             <div className="flex flex-col gap-2 justify-between">
                 <div className="flex flex-col">
                     <div

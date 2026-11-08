@@ -58,7 +58,12 @@ export default function TechSection() {
     return (
         <section
             className={cn(
-                "flex h-full flex-col gap-6 overflow-hidden pb-10 pr-2",
+                "flex h-full flex-col gap-6 overflow-hidden pb-10 pr-2 overflow-y-auto",
+                "[&::-webkit-scrollbar]:w-1",
+                "[&::-webkit-scrollbar-track]:bg-transparent",
+                "[&::-webkit-scrollbar-thumb]:bg-primary",
+                "[&::-webkit-scrollbar-thumb]:rounded-full",
+                "[&:hover::-webkit-scrollbar-thumb]:bg-primary",
             )}
         >
             <h2 className="text-2xl font-bold">
@@ -72,7 +77,7 @@ export default function TechSection() {
                         key={cat.category}
                         className="flex items-center gap-12 py-3"
                     >
-                        <h3 className="w-35 shrink-0 text-xs font-semibold">
+                        <h3 className="w-15 md:w-35 shrink-0 text-xs font-semibold">
                             {cat.category}
                         </h3>
 

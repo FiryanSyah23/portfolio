@@ -125,7 +125,7 @@ export default function ContactSection({ close }: Partial<SectionProps>) {
 
             <div
                 className={cn(
-                    "grid gap-6",
+                    "grid gap-6 max-md:grid-cols-1",
                     close ? "grid-cols-2" : "grid-cols-1",
                 )}
             >

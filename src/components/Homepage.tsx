@@ -12,6 +12,7 @@ import TechSection from "./section/TechSection";
 import PortfolioSection from "./section/PortfolioSection";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ContactSection from "./section/ContactSection";
+import { proTech, roles } from "@/data/profile";
 
 const sectionComponents: Record<string, React.ComponentType<SectionProps>> = {
     home: HomeSection,
@@ -28,15 +29,6 @@ const menus = [
     { id: "projects", label: "Projects", icon: "ri-folder-open-line" },
     { id: "contact", label: "Contact", icon: "ri-contacts-book-2-line" },
 ];
-
-const roles = [
-    "Software Engineer",
-    "Front-end Developer",
-    "Back-end Developer",
-    "Embedded Systems Enthusiast",
-];
-
-const proTech = ["Next.js", "Expo", "Wordpress"];
 
 export default function Homepage() {
     const [closeProfile, setCloseProfile] = useState<boolean>(false);
@@ -92,58 +84,58 @@ export default function Homepage() {
     return (
         <div
             className={cn(
-                "bg-second w-250 h-150 rounded-2xl shadow-stone shadow-xl border-2 border-border",
-                "flex overflow-hidden",
+                "bg-second w-full max-w-250 rounded-2xl shadow-stone shadow-xl border-2 border-border",
+                "h-[calc(100dvh-1rem)] md:h-150",
+                "flex flex-col-reverse overflow-hidden md:flex-row",
                 fadeIn("delay-0"),
             )}
         >
-            {/* Menu Navigation */}
             <nav
+                aria-label="Menu utama"
                 className={cn(
-                    "flex h-full w-12 flex-col items-center divide-y divide-border/50 border-r border-border/50 text-support",
+                    "flex w-full shrink-0 flex-row divide-x divide-border/50 border-t border-border/50 text-support",
+                    "md:h-full md:w-12 md:flex-col md:divide-x-0 md:divide-y md:border-t-0 md:border-r",
                 )}
             >
-                <nav
-                    className={cn(
-                        "flex h-full w-12 flex-col items-center divide-y divide-border/50 border-r border-border/50 text-support",
-                    )}
-                >
-                    {menus.map((menu, index) => (
-                        <div
-                            key={menu.id}
-                            className={cn("w-full", fadeIn(""))}
-                            style={{
-                                transitionDelay: `${index * 150}ms`,
-                            }}
+                {menus.map((menu, index) => (
+                    <div
+                        key={menu.id}
+                        className={cn(
+                            "flex-1 md:w-full md:flex-none",
+                            fadeIn(""),
+                        )}
+                        style={{
+                            transitionDelay: `${index * 150}ms`,
+                        }}
+                    >
+                        <button
+                            type="button"
+                            onClick={() => handleSelectMenu(menu.id)}
+                            aria-label={menu.label}
+                            aria-current={
+                                sectionMenu === menu.id ? "page" : undefined
+                            }
+                            className={cn(
+                                "w-full p-3 text-center duration-300 hover:bg-accent hover:text-white",
+                                sectionMenu === menu.id &&
+                                    "bg-primary text-white",
+                            )}
                         >
-                            <button
-                                type="button"
-                                onClick={() => handleSelectMenu(menu.id)}
-                                aria-label={menu.label}
-                                aria-current={
-                                    sectionMenu === menu.id ? "page" : undefined
-                                }
-                                className={cn(
-                                    "w-full p-3 text-center duration-300 hover:bg-accent hover:text-white",
-                                    sectionMenu === menu.id &&
-                                        "bg-primary text-white",
-                                )}
-                            >
-                                <i
-                                    className={cn(menu.icon, "ri-lg")}
-                                    aria-hidden="true"
-                                ></i>
-                            </button>
-                        </div>
-                    ))}
-                </nav>
+                            <i
+                                className={cn(menu.icon, "ri-lg")}
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+                    </div>
+                ))}
             </nav>
 
-            {/* Profile Card */}
+            {/* Profile Card (hanya desktop) */}
             <aside
                 aria-hidden={closeProfile}
                 inert={closeProfile}
                 className={cn(
+                    "hidden md:block",
                     "h-full shrink-0 overflow-hidden border-r border-border/50",
                     closeProfile ? "w-0 border-r-0" : "w-75",
                     enableAnimation
@@ -153,7 +145,7 @@ export default function Homepage() {
             >
                 <div
                     className={cn(
-                        "flex h-full w-75 flex-col items-center justify-center gap-4 px-10 py-4",
+                        "flex h-full w-75 flex-col items-center justify-center gap-4 px-6 py-4",
                         enableAnimation && "transition-opacity duration-500",
                         closeProfile ? "opacity-0" : "opacity-100",
                     )}
@@ -173,16 +165,19 @@ export default function Homepage() {
                         <h1 className="text-3xl font-bold uppercase">
                             Firyan Syah
                         </h1>
-                        <Typewriter words={roles} className="z-12 text-sm" />
+                        <Typewriter
+                            words={roles}
+                            className="z-12 text-sm text-support"
+                        />
                     </div>
 
-                    <div className="flex flex-wrap gap-1 justify-center w-full">
+                    <div className="flex w-full flex-wrap justify-center gap-1">
                         <a
                             href="/file/CV_Firyan_Syah.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
                             className={cn(
-                                "inline-flex items-center justify-center gap-2 rounded-3xl border border-border px-4 py-2 text-sm font-semibold text-support",
+                                "inline-flex items-center justify-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-semibold text-support",
                                 "duration-300 hover:bg-accent hover:text-white",
                             )}
                         >
@@ -194,15 +189,15 @@ export default function Homepage() {
                         </a>
                     </div>
 
-                    <div className="flex w-full items-center gap-2 flex-col">
-                        <h2 className="font-semibold text-sm">
+                    <div className="flex w-full flex-col items-center gap-2">
+                        <h2 className="text-sm font-semibold">
                             Profesional Tech{" "}
                         </h2>
                         <div className="flex gap-2">
                             {proTech.map((items) => (
                                 <span
                                     key={items}
-                                    className="bg-primary text-xs font-semibold text-white py-0.5 px-2 rounded-full"
+                                    className="rounded-full bg-primary px-2 py-0.5 text-xs font-semibold text-white"
                                 >
                                     {items}
                                 </span>
@@ -212,14 +207,15 @@ export default function Homepage() {
                 </div>
             </aside>
 
-            {/* Content Area  */}
-            <main className="relative flex min-h-0 min-w-0 flex-1 ">
+            {/* Content Area */}
+            <main className="relative flex min-h-0 min-w-0 flex-1">
+                {/* Tombol toggle profil (hanya desktop) */}
                 <button
                     type="button"
                     onClick={handleCloseProfile}
                     aria-label={closeProfile ? "Buka profil" : "Tutup profil"}
                     className={cn(
-                        "absolute left-0 top-0 flex size-10 items-center justify-center text-support hover:text-accent",
+                        "absolute left-0 top-0 hidden size-10 items-center justify-center text-support hover:text-accent md:flex",
                         fadeIn("delay-850"),
                     )}
                 >
@@ -241,7 +237,10 @@ export default function Homepage() {
                     )}
                 >
                     {ActiveSection && (
-                        <div key={sectionMenu} className="h-full px-8 pt-10">
+                        <div
+                            key={sectionMenu}
+                            className="h-full px-4 pt-4 md:px-8 md:pt-10"
+                        >
                             <ActiveSection
                                 key={sectionParam}
                                 onNavigate={handleSelectMenu}

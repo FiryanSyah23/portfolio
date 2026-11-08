@@ -57,7 +57,7 @@ export default function PortfolioSection({ close }: SectionProps) {
             <div
                 className={cn(
                     "min-h-0 flex-1 overflow-y-auto",
-                    "grid gap-4 relative",
+                    "grid gap-4 relative max-md:grid-cols-1",
                     !detailOpen &&
                         `border-y border-border py-5 ${close ? "grid-cols-3 px-4" : "grid-cols-2 px-2"}`,
                     "[&::-webkit-scrollbar]:w-1",
@@ -128,7 +128,7 @@ export default function PortfolioSection({ close }: SectionProps) {
                                 </div>
 
                                 <div
-                                    className={`grid gap-2 ${item.demo !== "" ? "grid-cols-2" : "grid-cols-1"} *:flex *:items-center *:justify-center *:hover:bg-accent *:duration-300 *:rounded-md`}
+                                    className={`grid gap-2  ${item.demo !== "" ? "grid-cols-2" : "grid-cols-1"} *:flex *:items-center *:justify-center *:hover:bg-accent *:duration-300 *:rounded-md`}
                                 >
                                     {item.demo !== "" && (
                                         <a

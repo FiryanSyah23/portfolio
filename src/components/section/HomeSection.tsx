@@ -1,4 +1,7 @@
+import Image from "next/image";
 import dataProjects from "@/data/projects";
+import { roles, proTech } from "@/data/profile";
+import Typewriter from "../TypeWriter";
 import { SectionProps } from "../../types/types";
 
 export default function HomeSection({ onNavigate }: SectionProps) {
@@ -8,7 +11,49 @@ export default function HomeSection({ onNavigate }: SectionProps) {
     ];
 
     return (
-        <section className="flex h-full pb-10 flex-col gap-6 justify-center">
+        <section className="flex h-full flex-col justify-start gap-6 overflow-y-auto pb-10 pr-2 md:justify-center md:overflow-visible">
+            <div className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-background p-5 text-center shadow-md shadow-accent/20 md:hidden">
+                <div className="size-28 overflow-hidden rounded-full border-4 border-primary/60 bg-primary">
+                    <Image
+                        src="/profile.webp"
+                        alt="Foto profil Firyan Syah"
+                        width={224}
+                        height={224}
+                        className="h-full w-full object-cover object-[-8px]"
+                        priority
+                    />
+                </div>
+
+                <div>
+                    <p className="text-2xl font-bold uppercase">Firyan Syah</p>
+                    <Typewriter
+                        words={roles}
+                        className="text-sm text-support"
+                    />
+                </div>
+
+                <ul className="flex flex-wrap justify-center gap-2">
+                    {proTech.map((tech) => (
+                        <li
+                            key={tech}
+                            className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-white"
+                        >
+                            {tech}
+                        </li>
+                    ))}
+                </ul>
+
+                <a
+                    href="/file/CV_Firyan_Syah.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-semibold text-accent duration-300 hover:bg-accent hover:text-white"
+                >
+                    <i className="ri-download-2-line" aria-hidden="true"></i>
+                    Lihat CV
+                </a>
+            </div>
+
             <span className="w-fit rounded-full bg-accent px-3 py-1 text-sm text-white">
                 Tersedia untuk proyek freelance
             </span>
@@ -30,14 +75,14 @@ export default function HomeSection({ onNavigate }: SectionProps) {
                 <button
                     type="button"
                     onClick={() => onNavigate("projects")}
-                    className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:bg-accent duration-300"
+                    className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition duration-300 hover:bg-accent"
                 >
                     Lihat Proyek
                 </button>
                 <button
                     type="button"
                     onClick={() => onNavigate("contact")}
-                    className="rounded-lg border border-border px-5 py-2.5 font-medium transition hover:bg-accent hover:text-white duration-300"
+                    className="rounded-lg border border-border px-5 py-2.5 font-medium transition duration-300 hover:bg-accent hover:text-white"
                 >
                     Hubungi Saya
                 </button>
