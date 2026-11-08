@@ -48,7 +48,7 @@ export default function Typewriter({
             promiseDeleting();
         }
 
-        // cleanup wajib, biar nggak ada timeout nyangkut kalau komponen unmount
+        // cleanup, biar nggak ada timeout nyangkut kalau komponen unmount
         return () => clearTimeout(timeout);
     }, [
         text,

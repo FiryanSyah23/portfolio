@@ -1,10 +1,7 @@
-// src/lib/generateTech.ts
 import dataProjects from "@/data/projects";
 import dataSkills from "@/data/techStack";
 import { TechStackWithCount } from "@/types/types";
 
-// Alias: nama alternatif -> nama kanonis (canonical name)
-// Key & value harus sudah dalam bentuk ter-normalize.
 const ALIASES: Record<string, string> = {
     js: "javascript",
     ts: "typescript",
@@ -30,7 +27,6 @@ const normalize = (text: string): string => {
 const projectCountByTech = new Map<string, number>();
 
 for (const project of dataProjects) {
-    // Set supaya kalau satu project menulis tech yang sama 2x, tidak dihitung ganda
     const uniqueTechs = new Set(project.tech.map(normalize));
     for (const tech of uniqueTechs) {
         projectCountByTech.set(tech, (projectCountByTech.get(tech) ?? 0) + 1);

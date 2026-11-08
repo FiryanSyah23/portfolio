@@ -18,7 +18,7 @@ const dataSkills: TechStack[] = [
                 logo: "/logo/ts.png",
                 description:
                     "Menulis kode JavaScript yang lebih aman dan mudah dirawat dengan static typing.",
-                startDate: "2026-03-01", // ganti dengan tanggal kamu mulai pakai TypeScript
+                startDate: "2026-03-01",
             },
             {
                 name: "React",

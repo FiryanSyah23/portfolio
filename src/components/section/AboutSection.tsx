@@ -1,7 +1,10 @@
-// src/components/section/AboutSection.tsx
+"use client";
+
 import dataProjects from "@/data/projects";
-import { cn } from "@/lib/utils";
+import { useScrollingIndicator } from "@/hooks/useScrollingIndicator";
 import { SectionProps } from "@/types/types";
+import { motion } from "motion/react";
+import { fadeUp, staggerContainer } from "@/lib/motionVariants";
 
 const focusAreas = [
     {
@@ -22,79 +25,92 @@ const focusAreas = [
 ];
 
 export default function AboutSection({ onNavigate }: Partial<SectionProps>) {
+    const scrollRef = useScrollingIndicator<HTMLElement>();
+
     return (
         <section
-            className={cn(
-                "flex h-full flex-col gap-6 pb-10 overflow-y-auto pr-2",
-                "[&::-webkit-scrollbar]:w-1",
-                "[&::-webkit-scrollbar-track]:bg-transparent",
-                "[&::-webkit-scrollbar-thumb]:bg-primary",
-                "[&::-webkit-scrollbar-thumb]:rounded-full",
-                "[&:hover::-webkit-scrollbar-thumb]:bg-primary",
-            )}
+            ref={scrollRef}
+            className="h-full overflow-y-auto pb-10 pr-2 scrollbar-auto-hide"
         >
-            <div className="flex flex-col gap-3">
-                <h2 className="text-4xl font-bold">Halo, saya Firyan</h2>
-                <p className="max-w-xl text-foreground/80">
-                    Saya seorang Software Engineer yang antusias dengan dunia
-                    teknologi. Senang mempelajari hal baru, mengeksplorasi
-                    teknologi, dan mengembangkan ide menjadi karya digital yang
-                    bermanfaat.
-                </p>
-            </div>
+            <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                animate="show"
+                className="flex flex-col gap-6"
+            >
+                <motion.div variants={fadeUp} className="flex flex-col gap-3">
+                    <h2 className="text-4xl font-bold">Halo, saya Firyan</h2>
+                    <p className="max-w-xl text-foreground/80">
+                        Saya seorang Software Engineer yang antusias dengan
+                        dunia teknologi. Senang mempelajari hal baru,
+                        mengeksplorasi teknologi, dan mengembangkan ide menjadi
+                        karya digital yang bermanfaat.
+                    </p>
+                </motion.div>
 
-            <div className="flex flex-col gap-3">
-                <h2 className="text-lg font-semibold">Fokus saya</h2>
-                <ul className="grid gap-3 sm:grid-cols-3">
-                    {focusAreas.map((area) => (
-                        <li
-                            key={area.title}
-                            className="flex flex-col gap-2 rounded-xl border border-border/50 p-4"
+                <motion.div variants={fadeUp} className="flex flex-col gap-3">
+                    <h2 className="text-lg font-semibold">Fokus saya</h2>
+                    <motion.ul
+                        variants={staggerContainer}
+                        className="grid gap-3 sm:grid-cols-3"
+                    >
+                        {focusAreas.map((area) => (
+                            <motion.li
+                                key={area.title}
+                                variants={fadeUp}
+                                className="flex flex-col gap-2 rounded-xl border border-border/50 p-4"
+                            >
+                                <i
+                                    className={`${area.icon} ri-xl text-accent`}
+                                    aria-hidden="true"
+                                ></i>
+                                <h3 className="font-semibold">{area.title}</h3>
+                                <p className="text-sm text-foreground/70">
+                                    {area.desc}
+                                </p>
+                            </motion.li>
+                        ))}
+                    </motion.ul>
+                </motion.div>
+
+                <motion.p
+                    variants={fadeUp}
+                    className="text-sm text-foreground/70"
+                >
+                    Sejauh ini sudah {dataProjects.length} proyek yang saya
+                    selesaikan, dari website sampai aplikasi desktop berbasis
+                    mikrokontroler.
+                </motion.p>
+
+                {onNavigate && (
+                    <motion.div
+                        variants={fadeUp}
+                        className="flex flex-wrap gap-3"
+                    >
+                        <button
+                            type="button"
+                            onClick={() => onNavigate("skills")}
+                            className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:opacity-90"
                         >
-                            <i
-                                className={`${area.icon} ri-xl text-accent`}
-                                aria-hidden="true"
-                            ></i>
-                            <h3 className="font-semibold">{area.title}</h3>
-                            <p className="text-sm text-foreground/70">
-                                {area.desc}
-                            </p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-            <p className="text-sm text-foreground/70">
-                Sejauh ini sudah {dataProjects.length} proyek yang saya
-                selesaikan, dari website sampai aplikasi desktop berbasis
-                mikrokontroler.
-            </p>
-
-            {onNavigate && (
-                <div className="flex flex-wrap gap-3">
-                    <button
-                        type="button"
-                        onClick={() => onNavigate("skills")}
-                        className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:opacity-90"
-                    >
-                        Lihat Skills
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => onNavigate("projects")}
-                        className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:opacity-90"
-                    >
-                        Lihat Proyek
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => onNavigate("contact")}
-                        className="rounded-lg border border-border px-5 py-2.5 font-medium transition hover:bg-accent hover:text-white"
-                    >
-                        Hubungi Saya
-                    </button>
-                </div>
-            )}
+                            Lihat Skills
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => onNavigate("projects")}
+                            className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:opacity-90"
+                        >
+                            Lihat Proyek
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => onNavigate("contact")}
+                            className="rounded-lg border border-border px-5 py-2.5 font-medium transition hover:bg-accent hover:text-white"
+                        >
+                            Hubungi Saya
+                        </button>
+                    </motion.div>
+                )}
+            </motion.div>
         </section>
     );
 }

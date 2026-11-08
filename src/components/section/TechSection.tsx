@@ -1,7 +1,10 @@
 "use client";
 
+import { useScrollingIndicator } from "@/hooks/useScrollingIndicator";
 import dataSkillsWithCount from "@/lib/generateTech";
 import { cn } from "@/lib/utils";
+import { fadeUp, staggerContainer } from "@/lib/motionVariants";
+import { motion, type Variants } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 import { createPortal } from "react-dom";
@@ -26,8 +29,33 @@ const HIDE_PROJECT_COUNT = new Set([
     "Claude Code",
 ]);
 
+
+const rowVariants: Variants = {
+    hidden: { opacity: 0, y: 16 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.4,
+            ease: "easeOut",
+            staggerChildren: 0.05,
+            delayChildren: 0.15,
+        },
+    },
+};
+
+const iconPop: Variants = {
+    hidden: { opacity: 0, scale: 0.6 },
+    show: {
+        opacity: 1,
+        scale: 1,
+        transition: { type: "spring", stiffness: 300, damping: 20 },
+    },
+};
+
 export default function TechSection() {
     const [tooltip, setTooltip] = useState<TooltipState | null>(null);
+    const scrollRef = useScrollingIndicator<HTMLElement>();
 
     function showTooltip(
         el: HTMLElement,
@@ -57,80 +85,100 @@ export default function TechSection() {
 
     return (
         <section
-            className={cn(
-                "flex h-full flex-col gap-6 overflow-hidden pb-10 pr-2 overflow-y-auto",
-                "[&::-webkit-scrollbar]:w-1",
-                "[&::-webkit-scrollbar-track]:bg-transparent",
-                "[&::-webkit-scrollbar-thumb]:bg-primary",
-                "[&::-webkit-scrollbar-thumb]:rounded-full",
-                "[&:hover::-webkit-scrollbar-thumb]:bg-primary",
-            )}
+            ref={scrollRef}
+            className="h-full overflow-y-auto overflow-x-hidden pb-10 pr-2 scrollbar-auto-hide"
         >
-            <h2 className="text-2xl font-bold">
-                Tools & Teknologi Pengembangan{" "}
-                <span className="text-accent">Website dan Aplikasi</span>
-            </h2>
+            <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                animate="show"
+                className="flex flex-col gap-6"
+            >
+                <motion.h2 variants={fadeUp} className="text-2xl font-bold">
+                    Tools & Teknologi Pengembangan{" "}
+                    <span className="text-accent">Website dan Aplikasi</span>
+                </motion.h2>
 
-            <div className="w-full divide-y divide-border/50 border-y border-border">
-                {dataSkillsWithCount.map((cat) => (
-                    <div
-                        key={cat.category}
-                        className="flex items-center gap-12 py-3"
-                    >
-                        <h3 className="w-15 md:w-35 shrink-0 text-xs font-semibold">
-                            {cat.category}
-                        </h3>
+                <motion.div
+                    variants={staggerContainer}
+                    className="w-full divide-y divide-border/50 border-y border-border"
+                >
+                    {dataSkillsWithCount.map((cat) => (
+                        <motion.div
+                            key={cat.category}
+                            variants={rowVariants}
+                            className="flex items-center gap-12 py-3"
+                        >
+                            <h3 className="w-15 md:w-35 shrink-0 text-xs font-semibold">
+                                {cat.category}
+                            </h3>
 
-                        <i
-                            className="ri-contract-right-line mt-2"
-                            aria-hidden="true"
-                        />
+                            <i
+                                className="ri-contract-right-line mt-2"
+                                aria-hidden="true"
+                            />
 
-                        {/* icon tech */}
-                        <div className="flex flex-wrap items-start gap-2">
-                            {cat.items.map((item) => {
-                                const isActive = tooltip?.name === item.name;
+                            {/* icon tech */}
+                            <div className="flex flex-wrap items-start gap-2">
+                                {cat.items.map((item) => {
+                                    const isActive =
+                                        tooltip?.name === item.name;
 
-                                return (
-                                    <button
-                                        key={item.name}
-                                        type="button"
-                                        aria-label={item.name}
-                                        onMouseEnter={(e) =>
-                                            showTooltip(e.currentTarget, item)
-                                        }
-                                        onMouseLeave={hideTooltip}
-                                        onFocus={(e) =>
-                                            showTooltip(e.currentTarget, item)
-                                        }
-                                        onBlur={hideTooltip}
-                                        className={cn(
-                                            "flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-background",
-                                            "transition-transform duration-200 ease-out",
-                                            isActive &&
-                                                "scale-110 border-accent",
-                                        )}
-                                    >
-                                        <Image
-                                            src={item.logo}
-                                            alt=""
-                                            width={50}
-                                            height={50}
-                                            className="size-6"
-                                        />
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </div>
-                ))}
-            </div>
+                                    return (
+                                        <motion.div
+                                            key={item.name}
+                                            variants={iconPop}
+                                        >
+                                            <button
+                                                type="button"
+                                                aria-label={item.name}
+                                                onMouseEnter={(e) =>
+                                                    showTooltip(
+                                                        e.currentTarget,
+                                                        item,
+                                                    )
+                                                }
+                                                onMouseLeave={hideTooltip}
+                                                onFocus={(e) =>
+                                                    showTooltip(
+                                                        e.currentTarget,
+                                                        item,
+                                                    )
+                                                }
+                                                onBlur={hideTooltip}
+                                                className={cn(
+                                                    "flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-background",
+                                                    "transition-transform duration-200 ease-out",
+                                                    isActive &&
+                                                        "scale-110 border-accent",
+                                                )}
+                                            >
+                                                <Image
+                                                    src={item.logo}
+                                                    alt=""
+                                                    width={50}
+                                                    height={50}
+                                                    className="size-6"
+                                                />
+                                            </button>
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </motion.div>
 
             {/* tooltip */}
             {tooltip &&
                 createPortal(
-                    <div
+                    <motion.div
+                        key={tooltip.name}
                         role="tooltip"
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.15 }}
                         style={{
                             left: tooltip.left,
                             top: tooltip.top,
@@ -152,7 +200,7 @@ export default function TechSection() {
                                     : "Belum dipakai di proyek yang ditampilkan"}
                             </p>
                         )}
-                    </div>,
+                    </motion.div>,
                     document.body,
                 )}
         </section>
