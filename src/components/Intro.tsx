@@ -7,17 +7,16 @@ import { cn } from "@/lib/utils";
 import { menus } from "@/data/menus";
 
 type IntroProps = {
-    onReveal: () => void; // dipanggil saat gelombang mulai (Homepage muncul)
-    onDone: () => void; // dipanggil saat gelombang selesai (Intro dibuang)
+    onReveal: () => void;
+    onDone: () => void; 
 };
 
-const MIN_LOADING_MS = 1200; // loading minimal (milidetik)
+const MIN_LOADING_MS = 1200; 
 
-// RADIUS = radius foto + radius bola + jarak kosong.
 const RADIUS = 120;
-const BUBBLE_START = 0.2; // detik: jeda setelah foto muncul sebelum bola pertama berangkat
-const BUBBLE_STAGGER = 0.08; // detik: jeda antar bola
-const BUBBLE_DURATION = 2.7; // detik: durasi satu bola (datang, berhenti, masuk)
+const BUBBLE_START = 0.2; 
+const BUBBLE_STAGGER = 0.08; 
+const BUBBLE_DURATION = 2.7;
 
 const RIPPLE_COUNT = 2; // jumlah lingkaran gelombang
 const RIPPLE_STAGGER = 0.25; // detik: jeda antar lingkaran
@@ -26,7 +25,6 @@ const RIPPLE_SCALE = 3; // lingkaran membesar sampai 3x ukuran foto
 
 type Phase = "bubbles" | "ripple";
 
-// Tiga kondisi foto, dipilih lewat nama (animate="visible" dst).
 const photoVariants: Variants = {
     hidden: { opacity: 0, scale: 0.6 },
     visible: {
@@ -49,8 +47,6 @@ export default function Intro({ onReveal, onDone }: IntroProps) {
     const [minTimePassed, setMinTimePassed] = useState(false);
     const [phase, setPhase] = useState<Phase>("bubbles");
 
-    // Jarak awal bola = diagonal layar, supaya pasti di luar window.
-    // Dihitung sekali saja saat komponen pertama dibuat.
     const [farDistance] = useState(() =>
         typeof window === "undefined"
             ? 1500
@@ -186,7 +182,6 @@ export default function Intro({ onReveal, onDone }: IntroProps) {
                         height={300}
                         priority
                         onLoad={() => setImageReady(true)}
-                        // Kalau foto gagal dimuat, jangan sampai intro macet selamanya
                         onError={() => setImageReady(true)}
                         className="size-20 object-cover"
                     />
@@ -210,7 +205,7 @@ export default function Intro({ onReveal, onDone }: IntroProps) {
                                 }}
                                 className="size-12 rounded-full border-4 border-border border-t-primary"
                             />
-                            <span className="text-xs text-support">
+                            <span className="text-xs text-white">
                                 Memuat...
                             </span>
                         </motion.div>

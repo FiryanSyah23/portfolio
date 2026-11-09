@@ -42,6 +42,7 @@ export default function Homepage() {
     const [closeProfile, setCloseProfile] = useState<boolean>(false);
     const [enableAnimation, setEnableAnimation] = useState<boolean>(false);
     const [introStatus, setIntroStatus] = useState<IntroStatus>("checking");
+    const [showHint, setShowHint] = useState<boolean>(false);
 
     const router = useRouter();
     const pathname = usePathname();
@@ -61,10 +62,15 @@ export default function Homepage() {
             setCloseProfile(savedCloseProfile === "true");
         }
 
-        // setIntroStatus(
-        //     sessionStorage.getItem("introSeen") ? "done" : "playing",
-        // );
-        setIntroStatus("playing");
+        // hint hanya tampil kalau user belum pernah menekan tombol toggle
+        // setShowHint(localStorage.getItem("hideToggleHint") !== "true");
+
+        setIntroStatus(
+            sessionStorage.getItem("introSeen") ? "done" : "playing",
+        );
+
+        setShowHint(true);
+        // setIntroStatus("playing");
     }, []);
 
     const ActiveSection = sectionComponents[sectionMenu];
@@ -84,6 +90,9 @@ export default function Homepage() {
         setEnableAnimation(true);
         setCloseProfile(next);
         localStorage.setItem("closeProfile", String(next));
+
+        setShowHint(false);
+        localStorage.setItem("hideToggleHint", "true");
     }
 
     function handleIntroReveal() {
@@ -235,23 +244,74 @@ export default function Homepage() {
 
                     {/* Content Area */}
                     <main className="relative flex min-h-0 min-w-0 flex-1">
-                        {/* Tombol toggle profil (hanya desktop) */}
-                        <motion.button
-                            type="button"
-                            onClick={handleCloseProfile}
-                            aria-label={
-                                closeProfile ? "Buka profil" : "Tutup profil"
-                            }
-                            {...fadeInProps(0.85)}
-                            className="absolute left-0 top-0 hidden size-10 items-center justify-center text-support transition-colors duration-300 hover:text-accent md:flex"
-                        >
-                            <motion.i
-                                className="ri-arrow-left-line ri-xl inline-block"
-                                animate={{ rotate: closeProfile ? 180 : 0 }}
-                                transition={{ duration: toggleDuration }}
-                                aria-hidden="true"
-                            />
-                        </motion.button>
+                        {/* Tombol toggle profil + hint (hanya desktop) */}
+                        <div className="pointer-events-none absolute left-0 top-0 z-20 hidden h-10 items-center md:flex">
+                            <motion.button
+                                type="button"
+                                onClick={handleCloseProfile}
+                                aria-label={
+                                    closeProfile
+                                        ? "Buka profil"
+                                        : "Tutup profil"
+                                }
+                                {...fadeInProps(0.85)}
+                                className="pointer-events-auto flex size-10 items-center justify-center text-support transition-colors duration-300 hover:text-accent"
+                            >
+                                <motion.i
+                                    className="ri-arrow-left-line ri-xl inline-block"
+                                    animate={{ rotate: closeProfile ? 180 : 0 }}
+                                    transition={{ duration: toggleDuration }}
+                                    aria-hidden="true"
+                                />
+                            </motion.button>
+
+                            <AnimatePresence>
+                                {showHint && (
+                                    <motion.div
+                                        key="toggle-hint"
+                                        aria-hidden="true"
+                                        initial={{ opacity: 0, x: -8 }}
+                                        animate={{
+                                            opacity: 1,
+                                            x: 0,
+                                            transition: {
+                                                delay: 1.3,
+                                                duration: 0.3,
+                                                ease: "easeOut",
+                                            },
+                                        }}
+                                        exit={{
+                                            opacity: 0,
+                                            x: -8,
+                                            transition: { duration: 0.2 },
+                                        }}
+                                        className="ml-2"
+                                    >
+                                        <motion.div
+                                            animate={{ x: [0, -4, 0] }}
+                                            transition={{
+                                                delay: 1.8,
+                                                duration: 1.4,
+                                                ease: "easeInOut",
+                                                repeat: Infinity,
+                                            }}
+                                            className="relative"
+                                        >
+                                            <span
+                                                className="absolute left-[-2.6px] top-1/2 size-3 -translate-y-1/2 rotate-45 rounded-xs bg-primary "
+                                                aria-hidden="true"
+                                            />
+
+                                            <span className="relative block whitespace-nowrap rounded-xl bg-primary px-3 py-1 text-xs font-semibold text-white ">
+                                                {closeProfile
+                                                    ? "Click To Show"
+                                                    : "Click To Hide"}
+                                            </span>
+                                        </motion.div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
 
                         <motion.div
                             {...fadeInProps(1)}
@@ -268,7 +328,7 @@ export default function Homepage() {
                                             duration: 0.2,
                                             ease: "easeOut",
                                         }}
-                                        className="h-full px-2 py-4 md:px-8 md:pt-10"
+                                        className="h-full px-2 pb-2 pt-4 md:pb-4 md:px-8 md:pt-10"
                                     >
                                         <ActiveSection
                                             key={sectionParam}

@@ -101,13 +101,23 @@ export default function AboutSection({ onNavigate }: Partial<SectionProps>) {
                         >
                             Lihat Proyek
                         </button>
-                        <button
+                        <motion.button
                             type="button"
                             onClick={() => onNavigate("contact")}
-                            className="rounded-lg border border-border px-5 py-2.5 font-medium transition hover:bg-accent hover:text-white"
+                            initial={{ rotate: 0 }}
+                            animate={{
+                                rotate: [0, 10, 0, 12, 0],
+                                transition: {
+                                    duration: 1.5,
+                                    ease: "easeInOut",
+                                    repeat: Infinity,
+                                    repeatDelay: 0.5,
+                                },
+                            }}
+                            className="rounded-lg border border-border px-5 py-2.5 font-medium transition-colors duration-300 hover:bg-accent hover:text-white"
                         >
                             Hubungi Saya
-                        </button>
+                        </motion.button>
                     </motion.div>
                 )}
             </motion.div>
