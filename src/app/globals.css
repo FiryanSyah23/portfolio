@@ -4,8 +4,7 @@
     /* Base */
     --background: rgb(255, 249, 230); /* soft ivory, bukan putih murni */
     --foreground: #2a2418; /* cokelat tua hangat, lebih lembut dari hitam */
-
-    /* Brand */
+    --bg-dark: #554f41; /* Brand */
     --primary: #e4a827; /* classic gold, untuk tombol & elemen utama */
     --second: #fffdf8; /* champagne, untuk background section / card */
     --support: #8a620b; /* dark gold, untuk teks link & ikon di atas putih */
@@ -16,6 +15,7 @@
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
+    --color-background-dark: var(--bg-dark);
     --color-primary: var(--primary);
     --color-second: var(--second);
     --color-support: var(--support);
@@ -49,5 +49,5 @@ body {
     background-image:
         linear-gradient(#e4a82717 1px, transparent 1px),
         linear-gradient(90deg, #e4a82717 1px, transparent 1px);
-    background-size: 100px 100px;
+    background-size: 60 60px;
 }

@@ -45,10 +45,7 @@ export default function PortfolioSection({ close }: SectionProps) {
     }
 
     return (
-        <section
-            ref={scrollRef}
-            className="flex h-full flex-col gap-6 pb-5 pr-2 "
-        >
+        <section ref={scrollRef} className="flex h-full flex-col gap-6 pr-2 ">
             {detailOpen ? (
                 <h2 className="text-2xl font-bold text-accent">
                     {pageProjectDetail?.title}

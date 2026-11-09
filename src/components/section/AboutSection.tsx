@@ -30,7 +30,7 @@ export default function AboutSection({ onNavigate }: Partial<SectionProps>) {
     return (
         <section
             ref={scrollRef}
-            className="h-full overflow-y-auto pb-10 pr-2 scrollbar-auto-hide"
+            className="h-full overflow-y-auto  pr-2 scrollbar-auto-hide"
         >
             <motion.div
                 variants={staggerContainer}

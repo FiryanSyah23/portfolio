@@ -19,7 +19,7 @@ export default function HomeSection({ onNavigate }: SectionProps) {
     return (
         <section
             ref={scrollRef}
-            className="flex h-full flex-col justify-start overflow-y-auto pb-10 max-md:pr-2 md:justify-center md:overflow-visible scrollbar-auto-hide"
+            className="flex h-full flex-col justify-start overflow-y-auto  max-md:pr-2 md:justify-center md:overflow-visible scrollbar-auto-hide"
         >
             <motion.div
                 variants={staggerContainer}

@@ -20,6 +20,7 @@ import {
     type MotionProps,
 } from "motion/react";
 import Intro from "./Intro";
+import { menus } from "@/data/menus";
 
 const sectionComponents: Record<string, React.ComponentType<SectionProps>> = {
     home: HomeSection,
@@ -29,24 +30,18 @@ const sectionComponents: Record<string, React.ComponentType<SectionProps>> = {
     contact: ContactSection,
 };
 
-const menus = [
-    { id: "home", label: "Home", icon: "ri-home-4-line" },
-    { id: "about", label: "About", icon: "ri-user-3-line" },
-    { id: "skills", label: "Skills", icon: "ri-code-s-slash-line" },
-    { id: "projects", label: "Projects", icon: "ri-folder-open-line" },
-    { id: "contact", label: "Contact", icon: "ri-contacts-book-2-line" },
-];
-
 const fadeInProps = (delay = 0): MotionProps => ({
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     transition: { duration: 0.7, ease: "easeOut", delay },
 });
 
+type IntroStatus = "checking" | "playing" | "revealing" | "done";
+
 export default function Homepage() {
     const [closeProfile, setCloseProfile] = useState<boolean>(false);
     const [enableAnimation, setEnableAnimation] = useState<boolean>(false);
-    const [introDone, setIntroDone] = useState<boolean>(false);
+    const [introStatus, setIntroStatus] = useState<IntroStatus>("checking");
 
     const router = useRouter();
     const pathname = usePathname();
@@ -65,6 +60,11 @@ export default function Homepage() {
         if (savedCloseProfile !== null) {
             setCloseProfile(savedCloseProfile === "true");
         }
+
+        // setIntroStatus(
+        //     sessionStorage.getItem("introSeen") ? "done" : "playing",
+        // );
+        setIntroStatus("playing");
     }, []);
 
     const ActiveSection = sectionComponents[sectionMenu];
@@ -86,20 +86,27 @@ export default function Homepage() {
         localStorage.setItem("closeProfile", String(next));
     }
 
+    function handleIntroReveal() {
+        sessionStorage.setItem("introSeen", "true");
+        setIntroStatus("revealing");
+    }
+
+    function handleIntroDone() {
+        setIntroStatus("done");
+    }
+
     return (
         <MotionConfig reducedMotion="user">
-            <AnimatePresence>
-                {!introDone && (
-                    <Intro key="intro" onDone={() => setIntroDone(true)} />
-                )}
-            </AnimatePresence>
-            {introDone && (
+            {(introStatus === "playing" || introStatus === "revealing") && (
+                <Intro onReveal={handleIntroReveal} onDone={handleIntroDone} />
+            )}
+            {(introStatus === "revealing" || introStatus === "done") && (
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     className={cn(
-                        "bg-second w-full max-w-250 rounded-2xl shadow-stone shadow-xl border-2 border-border",
+                        "bg-second w-full max-w-260 rounded-2xl shadow-stone shadow-xl border-2 border-border",
                         "h-[calc(100dvh-1rem)] md:h-150",
                         "flex flex-col-reverse overflow-hidden md:flex-row",
                     )}
@@ -261,7 +268,7 @@ export default function Homepage() {
                                             duration: 0.2,
                                             ease: "easeOut",
                                         }}
-                                        className="h-full px-2 pt-2 md:px-8 md:pt-10"
+                                        className="h-full px-2 py-4 md:px-8 md:pt-10"
                                     >
                                         <ActiveSection
                                             key={sectionParam}

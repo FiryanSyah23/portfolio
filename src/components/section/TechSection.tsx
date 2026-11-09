@@ -86,7 +86,7 @@ export default function TechSection() {
     return (
         <section
             ref={scrollRef}
-            className="h-full overflow-y-auto overflow-x-hidden pb-10 pr-2 scrollbar-auto-hide"
+            className="h-full overflow-y-auto overflow-x-hidden  pr-2 scrollbar-auto-hide"
         >
             <motion.div
                 variants={staggerContainer}
