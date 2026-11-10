@@ -90,7 +90,7 @@ export default function HomeSection({ onNavigate }: SectionProps) {
                     className="text-3xl font-bold lg:text-4xl"
                 >
                     Wujudkan Website Impianmu,{" "}
-                    <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+                    <span className="bg-linear-to-r from-primary to-support bg-clip-text text-transparent">
                         Cepat dan Interaktif
                     </span>
                 </motion.h2>

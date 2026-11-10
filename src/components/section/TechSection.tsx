@@ -193,7 +193,7 @@ export default function TechSection() {
                             {tooltip.description}
                         </p>
                         {!HIDE_PROJECT_COUNT.has(tooltip.name) && (
-                            <p className="text-xs text-accent">
+                            <p className="text-xs text-support">
                                 {tooltip.projectCount > 0
                                     ? `Dipakai di ${tooltip.projectCount} proyek`
                                     : "Belum dipakai di proyek yang ditampilkan"}

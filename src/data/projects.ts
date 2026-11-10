@@ -91,6 +91,26 @@ const dataProjects: Project[] = [
         status: "Completed",
         year: "2026",
     },
+    {
+        title: "MYP",
+        slug: "mypos",
+        updatedAt: "2026-11-10",
+        description:
+            "Aplikasi kasir untuk UMKM dan toko kelontong. Bisa dipakai offline untuk transaksi tunai, produk, dan laporan, dengan pembayaran QRIS online lewat Midtrans.",
+        longDescription:
+            "MYP adalah aplikasi POS (Point of Sale) berbasis mobile yang dibuat untuk pelaku UMKM dan toko kelontong agar bisa mencatat penjualan dengan cepat dan rapi. Fitur utamanya berjalan offline: data produk, stok, dan transaksi disimpan langsung di ponsel menggunakan SQLite, sehingga kasir, pengelolaan produk, dan laporan tetap bisa dipakai tanpa koneksi internet. Halaman Kasir memungkinkan pemilihan produk berdasarkan kategori lengkap dengan harga dan sisa stok, serta pembayaran tunai dengan tombol nominal cepat seperti uang pas, Rp 20.000, Rp 50.000, dan Rp 100.000. Untuk pembayaran non-tunai, aplikasi menyediakan QRIS yang diproses secara online melalui Midtrans sebagai payment gateway, sehingga pembayaran jenis ini membutuhkan koneksi internet. Halaman Produk digunakan untuk mengelola barang dan stok, sedangkan halaman Laporan menampilkan omzet, jumlah transaksi, dan item terjual per hari, bulan, maupun tahun, dilengkapi grafik omzet 7 hari terakhir.",
+        category: "Mobile App",
+        tech: ["React Native", "Expo", "SQLite", "TypeScript"],
+        image: "/imgProject/POS-app/thumbnail_aplikasi_kasir.png",
+        projectImg: [
+            "/imgProject/POS-app/thumbnail_aplikasi_kasir.png",
+            "/imgProject/POS-app/gallery_pembayaran.png",
+            "/imgProject/POS-app/gallery_laporan.png",
+        ],
+        demo: "",
+        status: "Completed",
+        year: "2026",
+    },
 ];
 
 export default dataProjects;

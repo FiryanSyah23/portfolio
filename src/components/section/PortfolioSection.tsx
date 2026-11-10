@@ -113,7 +113,7 @@ export default function PortfolioSection({ close }: SectionProps) {
                                             : { opacity: 0, y: 20 }
                                     }
                                     animate={{ opacity: 1, y: 0 }}
-                                    layout
+                                    layout="position"
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{
                                         duration: 0.4,
@@ -188,7 +188,7 @@ export default function PortfolioSection({ close }: SectionProps) {
                                         <div
                                             className={`grid gap-2  ${item.demo !== "" ? "grid-cols-2" : "grid-cols-1"} *:flex *:items-center *:justify-center *:hover:bg-accent *:duration-300 *:rounded-md`}
                                         >
-                                            {item.demo !== "" && (
+                                            {item.demo && (
                                                 <a
                                                     href={item.demo}
                                                     target="_blank"

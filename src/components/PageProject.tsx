@@ -190,7 +190,7 @@ export default function PageProject({
                     >
                         <i className="ri-arrow-go-back-line"></i> Kembali
                     </motion.button>
-                    {project.demo !== ""  && (
+                    {project.demo && (
                         <motion.a
                             whileTap={{ scale: 0.96 }}
                             href={project.demo}

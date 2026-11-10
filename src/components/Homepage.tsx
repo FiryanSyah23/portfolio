@@ -117,7 +117,7 @@ export default function Homepage() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     className={cn(
-                        "bg-second w-full max-w-260 rounded-2xl shadow-stone shadow-xl border-2 border-border",
+                        "bg-second w-full max-w-260 rounded-2xl shadow-accent/30 shadow-[0px_0px_10px] border-2 border-border",
                         "h-[calc(100dvh-1rem)] md:h-150",
                         "flex flex-col-reverse overflow-hidden md:flex-row",
                     )}

@@ -62,7 +62,7 @@ export default function AboutSection({ onNavigate }: Partial<SectionProps>) {
                                 className="flex flex-col gap-2 rounded-xl border border-border/50 p-4 hover:border-accent hover:shadow-md hover:shadow-accent/20 transition-[translate,box-shadow,border-color] duration-300 hover:-translate-y-1"
                             >
                                 <i
-                                    className={`${area.icon} ri-xl text-accent`}
+                                    className={`${area.icon} ri-xl text-support`}
                                     aria-hidden="true"
                                 ></i>
                                 <h3 className="font-semibold">{area.title}</h3>

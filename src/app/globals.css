@@ -34,8 +34,8 @@
     --bg-dark: #0f0c08;
     --primary: #e4a827;
     --second: #231e15;
-    --support: #a07b1c;
-    --accent: #b8860b;
+    --support: #e0b84d;
+    --accent: #916713;
     --border: #4a3d1f;
 }
 
@@ -56,5 +56,5 @@ body {
     background-image:
         linear-gradient(#e4a82717 1px, transparent 1px),
         linear-gradient(90deg, #e4a82717 1px, transparent 1px);
-    background-size: 64px 65;
+    background-size: 64px 65px;
 }
