@@ -10,6 +10,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import RingingButton from "../RingingButton";
 import { SectionProps } from "@/types/types";
+import { useSection } from "../SiteShell";
 
 const TOOLTIP_WIDTH = 224;
 const GAP = 8;
@@ -54,7 +55,8 @@ const iconPop: Variants = {
     },
 };
 
-export default function TechSection({ onNavigate }: Partial<SectionProps>) {
+export default function TechSection() {
+    const { onNavigate } = useSection();
     const [tooltip, setTooltip] = useState<TooltipState | null>(null);
     const scrollRef = useScrollingIndicator<HTMLElement>();
 

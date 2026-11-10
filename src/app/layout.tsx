@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 import GoogleTranslateFix from "@/hooks/GoogleTranslateFix";
+import SiteShell from "@/components/SiteShell";
 
 const poppins = Poppins({
     variable: "--font-poppins",
@@ -157,7 +158,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                     }}
                 />
                 <GoogleTranslateFix />
-                {children}
+                <SiteShell>{children}</SiteShell>
             </body>
         </html>
     );

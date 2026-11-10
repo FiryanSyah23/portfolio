@@ -4,13 +4,14 @@ import Image from "next/image";
 import dataProjects from "@/data/projects";
 import { roles, proTech } from "@/data/profile";
 import Typewriter from "../TypeWriter";
-import { SectionProps } from "../../types/types";
 import { useScrollingIndicator } from "@/hooks/useScrollingIndicator";
 import { motion } from "motion/react";
 import { fadeUp, staggerContainer } from "@/lib/motionVariants";
 import RingingButton from "../RingingButton";
+import { useSection } from "../SiteShell";
 
-export default function HomeSection({ onNavigate }: SectionProps) {
+export default function HomeSection() {
+    const { onNavigate } = useSection();
     const scrollRef = useScrollingIndicator<HTMLElement>();
     const stats = [
         { label: "Proyek Selesai", value: dataProjects.length },

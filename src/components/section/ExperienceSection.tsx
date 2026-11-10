@@ -4,12 +4,11 @@ import { motion } from "motion/react";
 import { useScrollingIndicator } from "@/hooks/useScrollingIndicator";
 import { fadeUp, staggerContainer } from "@/lib/motionVariants";
 import { experiences, testimonials } from "@/data/experience";
-import { SectionProps } from "@/types/types";
 import RingingButton from "../RingingButton";
+import { useSection } from "../SiteShell";
 
-export default function ExperienceSection({
-    onNavigate,
-}: Partial<SectionProps>) {
+export default function ExperienceSection() {
+    const { onNavigate } = useSection();
     const scrollRef = useScrollingIndicator<HTMLDivElement>();
 
     return (

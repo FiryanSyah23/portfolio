@@ -6,6 +6,7 @@ import { SectionProps } from "@/types/types";
 import { motion } from "motion/react";
 import { fadeUp, staggerContainer } from "@/lib/motionVariants";
 import RingingButton from "../RingingButton";
+import { useSection } from "../SiteShell";
 
 const focusAreas = [
     {
@@ -25,7 +26,8 @@ const focusAreas = [
     },
 ];
 
-export default function AboutSection({ onNavigate }: Partial<SectionProps>) {
+export default function AboutSection() {
+    const { onNavigate } = useSection();
     const scrollRef = useScrollingIndicator<HTMLElement>();
 
     return (
@@ -91,7 +93,7 @@ export default function AboutSection({ onNavigate }: Partial<SectionProps>) {
                         <button
                             type="button"
                             onClick={() => onNavigate("experience")}
-                           className="rounded-lg border border-border px-5 py-2.5 font-medium text-support transition duration-300 hover:bg-accent hover:text-white"
+                            className="rounded-lg border border-border px-5 py-2.5 font-medium text-support transition duration-300 hover:bg-accent hover:text-white"
                         >
                             Lihat Pengalaman
                         </button>

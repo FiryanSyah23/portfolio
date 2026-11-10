@@ -6,6 +6,7 @@ import { SectionProps } from "@/types/types";
 import { useScrollingIndicator } from "@/hooks/useScrollingIndicator";
 import { AnimatePresence, motion } from "motion/react";
 import { fadeUp, staggerContainer } from "@/lib/motionVariants";
+import { useSection } from "../SiteShell";
 
 const WA_NUMBER = "6285135886173";
 const EMAIL = "firyansyah22@gmail.com";
@@ -62,10 +63,10 @@ function sanitizeName(value: string) {
 
 function sanitizeMessage(value: string) {
     return value
-        .replace(/\r\n?/g, "\n") 
+        .replace(/\r\n?/g, "\n")
         .replace(MESSAGE_DISALLOWED, "")
-        .replace(/[^\S\n]+/g, " ") 
-        .replace(/\n{3,}/g, "\n\n") 
+        .replace(/[^\S\n]+/g, " ")
+        .replace(/\n{3,}/g, "\n\n")
         .slice(0, MESSAGE_MAX);
 }
 
@@ -82,7 +83,8 @@ function validate(name: string, message: string): string | null {
     return null;
 }
 
-export default function ContactSection({ close }: Partial<SectionProps>) {
+export default function ContactSection() {
+    const { close } = useSection();
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
     const [error, setError] = useState<string | null>(null);
