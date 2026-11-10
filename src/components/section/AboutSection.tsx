@@ -91,23 +91,9 @@ export default function AboutSection({ onNavigate }: Partial<SectionProps>) {
                         <button
                             type="button"
                             onClick={() => onNavigate("experience")}
-                            className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:bg-accent"
+                           className="rounded-lg border border-border px-5 py-2.5 font-medium text-support transition duration-300 hover:bg-accent hover:text-white"
                         >
-                            Pengalaman Kerja
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => onNavigate("skills")}
-                            className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:bg-accent"
-                        >
-                            Lihat Skills
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => onNavigate("projects")}
-                            className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:bg-accent"
-                        >
-                            Lihat Proyek
+                            Lihat Pengalaman
                         </button>
                         <RingingButton onClick={() => onNavigate("contact")}>
                             Hubungi Saya

@@ -4,8 +4,12 @@ import { motion } from "motion/react";
 import { useScrollingIndicator } from "@/hooks/useScrollingIndicator";
 import { fadeUp, staggerContainer } from "@/lib/motionVariants";
 import { experiences, testimonials } from "@/data/experience";
+import { SectionProps } from "@/types/types";
+import RingingButton from "../RingingButton";
 
-export default function ExperienceSection() {
+export default function ExperienceSection({
+    onNavigate,
+}: Partial<SectionProps>) {
     const scrollRef = useScrollingIndicator<HTMLDivElement>();
 
     return (
@@ -85,6 +89,24 @@ export default function ExperienceSection() {
                         </motion.div>
                     )}
                 </div>
+
+                {onNavigate && (
+                    <motion.div
+                        variants={fadeUp}
+                        className="flex flex-wrap gap-3 *:text-sm"
+                    >
+                        <button
+                            type="button"
+                            onClick={() => onNavigate("skills")}
+                            className="rounded-lg border border-border px-5 py-2.5 font-medium text-support transition duration-300 hover:bg-accent hover:text-white"
+                        >
+                            Lihat Skill
+                        </button>
+                        <RingingButton onClick={() => onNavigate("contact")}>
+                            Hubungi Saya
+                        </RingingButton>
+                    </motion.div>
+                )}
             </motion.div>
         </section>
     );

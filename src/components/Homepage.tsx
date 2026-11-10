@@ -23,6 +23,7 @@ import Intro from "./Intro";
 import { menus } from "@/data/menus";
 import ThemeToggle from "./ThemeToggle";
 import ExperienceSection from "./section/ExperienceSection";
+import BootLoader from "./BootLoader";
 
 const sectionComponents: Record<string, React.ComponentType<SectionProps>> = {
     home: HomeSection,
@@ -59,22 +60,31 @@ export default function Homepage() {
     const toggleDuration = enableAnimation ? 0.5 : 0;
 
     useEffect(() => {
-        const savedCloseProfile = localStorage.getItem("closeProfile");
+        try {
+            const savedCloseProfile = localStorage.getItem("closeProfile");
+            if (savedCloseProfile !== null) {
+                setCloseProfile(savedCloseProfile === "true");
+            }
+            setShowHint(localStorage.getItem("hideToggleHint") !== "true");
+        } catch {}
 
-        if (savedCloseProfile !== null) {
-            setCloseProfile(savedCloseProfile === "true");
-        }
-
-        setShowHint(localStorage.getItem("hideToggleHint") !== "true");
-
-        setIntroStatus(
-            sessionStorage.getItem("introSeen") ? "done" : "playing",
-        );
+        let seen = false;
+        try {
+            seen = Boolean(sessionStorage.getItem("introSeen"));
+        } catch {}
+        setIntroStatus(seen ? "done" : "playing");
 
         // test
         // setShowHint(true);
         // setIntroStatus("playing");
     }, []);
+
+    function handleIntroReveal() {
+        try {
+            sessionStorage.setItem("introSeen", "true");
+        } catch {}
+        setIntroStatus("revealing");
+    }
 
     const ActiveSection = sectionComponents[sectionMenu];
 
@@ -98,13 +108,9 @@ export default function Homepage() {
         localStorage.setItem("hideToggleHint", "true");
     }
 
-    function handleIntroReveal() {
-        sessionStorage.setItem("introSeen", "true");
-        setIntroStatus("revealing");
-    }
-
     return (
         <MotionConfig reducedMotion="user">
+            {introStatus === "checking" && <BootLoader />}
             {(introStatus === "playing" || introStatus === "revealing") && (
                 <Intro
                     onReveal={handleIntroReveal}
@@ -199,9 +205,9 @@ export default function Homepage() {
                             </div>
 
                             <div className="flex flex-col text-center">
-                                <h1 className="text-3xl font-bold uppercase">
+                                <p className="text-3xl font-bold uppercase">
                                     Firyan Syah
-                                </h1>
+                                </p>
                                 <Typewriter
                                     words={roles}
                                     className="z-12 text-sm text-support"

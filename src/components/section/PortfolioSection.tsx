@@ -9,13 +9,14 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import PageProject from "../PageProject";
 import { useScrollingIndicator } from "@/hooks/useScrollingIndicator";
+import RingingButton from "../RingingButton";
 
 const badgeClass =
     "text-[10px] bg-foreground py-0.5 px-1.5 rounded-full text-second";
 
 const categories = ["Semua", ...new Set(dataProjects.map((p) => p.category))];
 
-export default function PortfolioSection({ close }: SectionProps) {
+export default function PortfolioSection({ close, onNavigate }: SectionProps) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -59,8 +60,8 @@ export default function PortfolioSection({ close }: SectionProps) {
                 </h2>
             ) : (
                 <h2 className="text-2xl font-bold">
-                    Hasil kerja <span className="text-accent">nyata</span> untuk
-                    klien dan proyek pribadi
+                    Karya <span className="text-accent">pengembangan</span> dari
+                    proyek klien dan pribadi
                 </h2>
             )}
 
@@ -103,114 +104,132 @@ export default function PortfolioSection({ close }: SectionProps) {
                             onClose={handleDetailClose}
                         />
                     ) : (
-                        <AnimatePresence mode="popLayout">
-                            {filteredProjects.map((item, index) => (
-                                <motion.div
-                                    key={item.slug}
-                                    initial={
-                                        skipEntrance
-                                            ? false
-                                            : { opacity: 0, y: 20 }
-                                    }
-                                    animate={{ opacity: 1, y: 0 }}
-                                    layout="position"
-                                    exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{
-                                        duration: 0.4,
-                                        ease: "easeOut",
-                                        delay: index * 0.08,
-                                        layout: { duration: 0.3 },
-                                    }}
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="flex flex-col gap-2 rounded-md border border-border bg-background p-2 shadow-accent/70 hover:shadow-[0px_0px_10px] transition-shadow duration-300"
-                                >
+                        <>
+                            <AnimatePresence mode="popLayout">
+                                {filteredProjects.map((item, index) => (
                                     <motion.div
-                                        layoutId={`project-img-${item.slug}`}
+                                        key={item.slug}
+                                        initial={
+                                            skipEntrance
+                                                ? false
+                                                : { opacity: 0, y: 20 }
+                                        }
+                                        animate={{ opacity: 1, y: 0 }}
+                                        layout="position"
+                                        exit={{ opacity: 0, scale: 0.9 }}
                                         transition={{
-                                            duration: 0.45,
-                                            ease: "easeInOut",
+                                            duration: 0.4,
+                                            ease: "easeOut",
+                                            delay: index * 0.08,
+                                            layout: { duration: 0.3 },
                                         }}
-                                        style={{ borderRadius: 6 }}
-                                        className="relative aspect-video w-full overflow-hidden bg-foreground/5"
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        className="flex flex-col gap-2 rounded-md border border-border bg-background p-2 shadow-accent/70 hover:shadow-[0px_0px_10px] transition-shadow duration-300"
                                     >
-                                        <Image
-                                            src={item.image}
-                                            alt={`${item.title} thumbnail`}
-                                            fill
-                                            sizes="(min-width: 1024px) 33vw, 50vw"
-                                            priority={index < 3}
-                                            className={cn(
-                                                item.fit === "contain"
-                                                    ? "object-contain p-1"
-                                                    : "object-cover object-top",
-                                            )}
-                                        />
-                                    </motion.div>
+                                        <motion.div
+                                            layoutId={`project-img-${item.slug}`}
+                                            transition={{
+                                                duration: 0.45,
+                                                ease: "easeInOut",
+                                            }}
+                                            style={{ borderRadius: 6 }}
+                                            className="relative aspect-video w-full overflow-hidden bg-foreground/5"
+                                        >
+                                            <Image
+                                                src={item.image}
+                                                alt={`${item.title} thumbnail`}
+                                                fill
+                                                sizes="(min-width: 1024px) 33vw, 50vw"
+                                                priority={index < 3}
+                                                className={cn(
+                                                    item.fit === "contain"
+                                                        ? "object-contain p-1"
+                                                        : "object-cover object-top",
+                                                )}
+                                            />
+                                        </motion.div>
 
-                                    {/* konten portfolio */}
-                                    <div className="flex-1 flex flex-col gap-2 justify-between">
-                                        <div className="flex gap-2 flex-col">
-                                            <div className="flex items-center justify-between">
-                                                <h3 className="text-sm font-bold">
-                                                    {item.title}
-                                                </h3>
-                                                <span className="text-xs text-foreground/50">
-                                                    {item.category}
-                                                </span>
-                                            </div>
-                                            <div className="flex gap-2">
-                                                {item.tech
-                                                    .slice(0, 3)
-                                                    .map((tech) => (
+                                        {/* konten portfolio */}
+                                        <div className="flex-1 flex flex-col gap-2 justify-between">
+                                            <div className="flex gap-2 flex-col">
+                                                <div className="flex items-center justify-between">
+                                                    <h3 className="text-sm font-bold">
+                                                        {item.title}
+                                                    </h3>
+                                                    <span className="text-xs text-foreground/50">
+                                                        {item.category}
+                                                    </span>
+                                                </div>
+                                                <div className="flex gap-2">
+                                                    {item.tech
+                                                        .slice(0, 3)
+                                                        .map((tech) => (
+                                                            <span
+                                                                key={tech}
+                                                                className={
+                                                                    badgeClass
+                                                                }
+                                                            >
+                                                                {tech}
+                                                            </span>
+                                                        ))}
+                                                    {item.tech.length > 3 && (
                                                         <span
-                                                            key={tech}
                                                             className={
                                                                 badgeClass
                                                             }
                                                         >
-                                                            {tech}
+                                                            +
+                                                            {item.tech.length -
+                                                                3}
                                                         </span>
-                                                    ))}
-                                                {item.tech.length > 3 && (
-                                                    <span
-                                                        className={badgeClass}
-                                                    >
-                                                        +{item.tech.length - 3}
-                                                    </span>
-                                                )}
+                                                    )}
+                                                </div>
+                                                <p className="text-xs text-foreground/60">
+                                                    {item.description}
+                                                </p>
                                             </div>
-                                            <p className="text-xs text-foreground/60">
-                                                {item.description}
-                                            </p>
-                                        </div>
 
-                                        <div
-                                            className={`grid gap-2  ${item.demo !== "" ? "grid-cols-2" : "grid-cols-1"} *:flex *:items-center *:justify-center *:hover:bg-accent *:duration-300 *:rounded-md`}
-                                        >
-                                            {item.demo && (
-                                                <a
-                                                    href={item.demo}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="bg-primary p-1 text-white text-sm text-center"
-                                                >
-                                                    Lihat Demo
-                                                </a>
-                                            )}
-                                            <button
-                                                className="bg-primary p-1 text-white text-sm text-center"
-                                                onClick={() =>
-                                                    handleDetailOpen(item.slug)
-                                                }
+                                            <div
+                                                className={`grid gap-2  ${item.demo !== "" ? "grid-cols-2" : "grid-cols-1"} *:flex *:items-center *:justify-center *:hover:bg-accent *:duration-300 *:rounded-md`}
                                             >
-                                                Lihat Detail
-                                            </button>
+                                                {item.demo && (
+                                                    <a
+                                                        href={item.demo}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="bg-primary p-1 text-white text-sm text-center"
+                                                    >
+                                                        Lihat Demo
+                                                    </a>
+                                                )}
+                                                <button
+                                                    className="bg-primary p-1 text-white text-sm text-center"
+                                                    onClick={() =>
+                                                        handleDetailOpen(
+                                                            item.slug,
+                                                        )
+                                                    }
+                                                >
+                                                    Lihat Detail
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </AnimatePresence>
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                            <div className="col-span-full flex flex-col gap-3 items-center pt-4">
+                                <p className="text-sm text-foreground/70">
+                                    Tertarik punya proyek serupa?
+                                </p>
+                                <RingingButton
+                                    onClick={() => onNavigate("contact")}
+                                >
+                                    Hubungi Saya
+                                </RingingButton>
+                            </div>
+                        </>
                     )}
                 </motion.div>
             </div>

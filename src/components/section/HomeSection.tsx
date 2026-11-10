@@ -107,7 +107,7 @@ export default function HomeSection({ onNavigate }: SectionProps) {
                     <button
                         type="button"
                         onClick={() => onNavigate("about")}
-                        className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition duration-300 hover:bg-accent"
+                        className="rounded-lg border border-border px-5 py-2.5 font-medium text-support transition duration-300 hover:bg-accent hover:text-white"
                     >
                         Tentang Saya
                     </button>

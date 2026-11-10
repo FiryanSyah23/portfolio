@@ -8,6 +8,8 @@ import { motion, type Variants } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 import { createPortal } from "react-dom";
+import RingingButton from "../RingingButton";
+import { SectionProps } from "@/types/types";
 
 const TOOLTIP_WIDTH = 224;
 const GAP = 8;
@@ -52,7 +54,7 @@ const iconPop: Variants = {
     },
 };
 
-export default function TechSection() {
+export default function TechSection({ onNavigate }: Partial<SectionProps>) {
     const [tooltip, setTooltip] = useState<TooltipState | null>(null);
     const scrollRef = useScrollingIndicator<HTMLElement>();
 
@@ -91,11 +93,10 @@ export default function TechSection() {
                 variants={staggerContainer}
                 initial="hidden"
                 animate="show"
-                className="flex flex-col gap-6"
+                className="flex flex-col gap-2"
             >
                 <motion.h2 variants={fadeUp} className="text-2xl font-bold">
                     Tools & Teknologi Pengembangan{" "}
-                    <span className="text-accent">Website dan Aplikasi</span>
                 </motion.h2>
 
                 <motion.div
@@ -167,6 +168,23 @@ export default function TechSection() {
                         </motion.div>
                     ))}
                 </motion.div>
+                {onNavigate && (
+                    <motion.div
+                        variants={fadeUp}
+                        className="flex flex-wrap gap-3 *:text-sm mt-2"
+                    >
+                        <button
+                            type="button"
+                            onClick={() => onNavigate("projects")}
+                            className="rounded-lg border border-border px-5 py-2.5 font-medium text-support transition duration-300 hover:bg-accent hover:text-white"
+                        >
+                            Lihat Proyek
+                        </button>
+                        <RingingButton onClick={() => onNavigate("contact")}>
+                            Hubungi Saya
+                        </RingingButton>
+                    </motion.div>
+                )}
             </motion.div>
 
             {/* tooltip */}

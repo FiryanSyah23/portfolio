@@ -61,7 +61,7 @@ export default function Typewriter({
     ]);
 
     return (
-        <span className={className}>
+        <span className={className} translate="no">
             {text}
             <span className="inline-block w-2 h-[1em] bg-current ml-0.5 align-middle animate-[pulse_.5s_ease-in-out_infinite] " />
         </span>

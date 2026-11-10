@@ -74,7 +74,7 @@ export default function RingingButton({
                     initial="idle"
                     animate={controls}
                     className={cn(
-                        "pointer-events-none absolute rounded-tr-full border-r-2 border-t-2 border-accent",
+                        "pointer-events-none absolute rounded-tr-full border-r-2 border-t-2 border-primary",
                         mark.size,
                         mark.offset,
                     )}
@@ -88,7 +88,7 @@ export default function RingingButton({
                 initial="idle"
                 animate={controls}
                 className={cn(
-                    "rounded-lg border border-border px-5 py-2.5 font-medium transition-colors duration-300 hover:bg-accent hover:text-white",
+                    "rounded-lg border border-border px-5 py-2.5 font-medium transition-colors duration-300 bg-primary hover:bg-accent text-white",
                     className,
                 )}
             >

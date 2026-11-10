@@ -1,29 +1,34 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 import { cn } from "@/lib/utils";
 import { menus } from "@/data/menus";
+import { INTRO_ASSETS } from "@/lib/introAssets";
+import { useAssetsReady } from "@/hooks/useAssetsReady";
 
 type IntroProps = {
     onReveal: () => void;
-    onDone: () => void; 
+    onDone: () => void;
 };
 
-const MIN_LOADING_MS = 1200; 
+const ORBIT_RADIUS = 120;
+const ORBIT_DURATION = 1; // detik per putaran orbit
+const ENTER_DELAY = 0.2;
+const ENTER_DURATION = 1.6; // lama bubble terbang dari luar layar
+const BUBBLE_STAGGER = 0.1;
+const CONVERGE_MS = 900; // lama bubble masuk ke foto
 
-const RADIUS = 120;
-const BUBBLE_START = 0.2; 
-const BUBBLE_STAGGER = 0.08; 
-const BUBBLE_DURATION = 2.7;
+const ENTRANCE_MS =
+    (ENTER_DELAY + (menus.length - 1) * BUBBLE_STAGGER + ENTER_DURATION) * 1000;
 
-const RIPPLE_COUNT = 2; // jumlah lingkaran gelombang
-const RIPPLE_STAGGER = 0.25; // detik: jeda antar lingkaran
-const RIPPLE_DURATION = 1; // detik: durasi satu lingkaran
-const RIPPLE_SCALE = 3; // lingkaran membesar sampai 3x ukuran foto
-
-type Phase = "bubbles" | "ripple";
+const RIPPLE_COUNT = 2;
+const RIPPLE_STAGGER = 0.25;
+const RIPPLE_DURATION = 1;
+const RIPPLE_SCALE = 3;
+const RIPPLE_TOTAL_MS =
+    ((RIPPLE_COUNT - 1) * RIPPLE_STAGGER + RIPPLE_DURATION) * 1000;
 
 const photoVariants: Variants = {
     hidden: { opacity: 0, scale: 0.6 },
@@ -43,9 +48,17 @@ const photoVariants: Variants = {
 };
 
 export default function Intro({ onReveal, onDone }: IntroProps) {
-    const [imageReady, setImageReady] = useState(false);
-    const [minTimePassed, setMinTimePassed] = useState(false);
-    const [phase, setPhase] = useState<Phase>("bubbles");
+    const { ready, done, total } = useAssetsReady(INTRO_ASSETS);
+    const [entered, setEntered] = useState(false);
+    const [revealed, setRevealed] = useState(false);
+
+    const onRevealRef = useRef(onReveal);
+    const onDoneRef = useRef(onDone);
+
+    useEffect(() => {
+        onRevealRef.current = onReveal;
+        onDoneRef.current = onDone;
+    });
 
     const [farDistance] = useState(() =>
         typeof window === "undefined"
@@ -53,33 +66,46 @@ export default function Intro({ onReveal, onDone }: IntroProps) {
             : Math.hypot(window.innerWidth, window.innerHeight),
     );
 
+    // bubble dianggap sudah sampai di orbit setelah animasi masuk selesai
     useEffect(() => {
-        const timeout = setTimeout(
-            () => setMinTimePassed(true),
-            MIN_LOADING_MS,
-        );
-        return () => clearTimeout(timeout);
+        const t = setTimeout(() => setEntered(true), ENTRANCE_MS);
+        return () => clearTimeout(t);
     }, []);
 
-    const ready = imageReady && minTimePassed;
+    const allReady = ready && entered;
+    const phase = !allReady ? "loading" : revealed ? "ripple" : "converge";
+    const gathered = phase !== "loading";
 
-    const photoState = !ready
-        ? "hidden"
-        : phase === "ripple"
-          ? "leaving"
-          : "visible";
+    useEffect(() => {
+        if (!allReady) return;
+        const reveal = setTimeout(() => {
+            setRevealed(true);
+            onRevealRef.current();
+        }, CONVERGE_MS);
+        const finish = setTimeout(
+            () => onDoneRef.current(),
+            CONVERGE_MS + RIPPLE_TOTAL_MS,
+        );
+        return () => {
+            clearTimeout(reveal);
+            clearTimeout(finish);
+        };
+    }, [allReady]);
 
-    function handleBubblesDone() {
-        setPhase("ripple");
-        onReveal();
-    }
+    const orbitTransition = entered
+        ? {
+              repeat: Infinity,
+              duration: ORBIT_DURATION,
+              ease: "linear" as const,
+          }
+        : { duration: 0 };
 
     return (
         <div
             role="status"
             aria-label="Memuat halaman"
             className={cn(
-                "fixed inset-0 z-50 flex items-center justify-center overflow-hidden ",
+                "fixed inset-0 z-50 flex items-center justify-center overflow-hidden",
                 phase === "ripple" && "pointer-events-none",
             )}
         >
@@ -89,7 +115,8 @@ export default function Intro({ onReveal, onDone }: IntroProps) {
                 className="absolute inset-0 bg-background-dark"
             />
 
-            <div className="relative size-30 ">
+            <div className="relative size-30">
+                {/* Gelombang saat selesai */}
                 {phase === "ripple" &&
                     Array.from({ length: RIPPLE_COUNT }, (_, i) => (
                         <motion.span
@@ -101,31 +128,23 @@ export default function Intro({ onReveal, onDone }: IntroProps) {
                                 delay: i * RIPPLE_STAGGER,
                                 ease: "easeOut",
                             }}
-                            // Intro dibuang saat lingkaran TERAKHIR selesai memancar
-                            onAnimationComplete={
-                                i === RIPPLE_COUNT - 1 ? onDone : undefined
-                            }
                             className="absolute inset-0 rounded-full border border-primary"
                         />
                     ))}
 
-                {/* Bola ikon menu: datang dari luar window, berhenti di sekitar foto, lalu masuk */}
-                {ready &&
-                    menus.map((menu, index) => {
-                        // Sebar rata di lingkaran, mulai dari jam 12.
-                        // 2π radian = satu lingkaran penuh.
+                {/* Wrapper orbit: baru berputar setelah semua bubble sampai */}
+                <motion.div
+                    className="absolute inset-0"
+                    animate={{ rotate: entered ? 360 : 0 }}
+                    transition={orbitTransition}
+                >
+                    {menus.map((menu, index) => {
                         const angle =
                             (index / menus.length) * Math.PI * 2 - Math.PI / 2;
-
-                        // posisi berhenti: dekat foto
-                        const x = Math.cos(angle) * RADIUS;
-                        const y = Math.sin(angle) * RADIUS;
-
-                        // posisi awal: arah yang sama, tapi jauh di luar layar
+                        const x = Math.cos(angle) * ORBIT_RADIUS;
+                        const y = Math.sin(angle) * ORBIT_RADIUS;
                         const fromX = Math.cos(angle) * farDistance;
                         const fromY = Math.sin(angle) * farDistance;
-
-                        const isLast = index === menus.length - 1;
 
                         return (
                             <motion.span
@@ -136,44 +155,45 @@ export default function Intro({ onReveal, onDone }: IntroProps) {
                                     scale: 1,
                                     opacity: 1,
                                 }}
-                                animate={{
-                                    x: [fromX, x, x, 0, 0],
-                                    y: [fromY, y, y, 0, 0],
-                                    scale: [1, 1, 1, 0.3, 0.3],
-                                    opacity: [1, 1, 1, 1, 0],
-                                }}
-                                transition={{
-                                    duration: BUBBLE_DURATION,
-                                    delay:
-                                        BUBBLE_START + index * BUBBLE_STAGGER,
-                                    // datang 40%, diam 28%, masuk 26%, hilang 6%
-                                    times: [0, 0.4, 0.68, 0.94, 1],
-                                    ease: [
-                                        "easeOut",
-                                        "linear",
-                                        "easeIn",
-                                        "linear",
-                                    ],
-                                }}
-                                onAnimationComplete={
-                                    isLast ? handleBubblesDone : undefined
+                                animate={
+                                    gathered
+                                        ? { x: 0, y: 0, scale: 0.3, opacity: 0 }
+                                        : { x, y, scale: 1, opacity: 1 }
+                                }
+                                transition={
+                                    gathered
+                                        ? {
+                                              duration: CONVERGE_MS / 1000,
+                                              ease: "easeInOut",
+                                          }
+                                        : {
+                                              duration: ENTER_DURATION,
+                                              delay:
+                                                  ENTER_DELAY +
+                                                  index * BUBBLE_STAGGER,
+                                              ease: "easeOut",
+                                          }
                                 }
                                 className="absolute inset-0 m-auto flex size-14 items-center justify-center rounded-full border border-border bg-second text-support shadow-md"
                             >
-                                <i
-                                    className={`${menu.icon} ri-lg`}
+                                {/* putar balik supaya ikon tetap tegak */}
+                                <motion.i
+                                    animate={{ rotate: entered ? -360 : 0 }}
+                                    transition={orbitTransition}
+                                    className={`${menu.icon} ri-lg inline-block`}
                                     aria-hidden="true"
                                 />
                             </motion.span>
                         );
                     })}
+                </motion.div>
 
-                {/* Foto profil: lapisan atas (z-10). */}
+                {/* Foto profil */}
                 <motion.div
                     variants={photoVariants}
                     initial="hidden"
-                    animate={photoState}
-                    className="relative z-10 size-30 overflow-hidden rounded-full border-4 border-primary/60 bg-primary flex items-center justify-center shadow-[0px_0px_20px_#e4a827]"
+                    animate={phase === "ripple" ? "leaving" : "visible"}
+                    className="relative z-10 flex size-30 items-center justify-center overflow-hidden rounded-full border-4 border-primary/60 bg-primary shadow-[0px_0px_20px_#e4a827]"
                 >
                     <Image
                         src="/circuit-user.png"
@@ -181,37 +201,30 @@ export default function Intro({ onReveal, onDone }: IntroProps) {
                         width={300}
                         height={300}
                         priority
-                        onLoad={() => setImageReady(true)}
-                        onError={() => setImageReady(true)}
                         className="size-20 object-cover"
                     />
                 </motion.div>
 
-                {/* Loading: spinner, hilang saat ready */}
+                {/* Ring spinner, hilang saat semua siap */}
                 <AnimatePresence>
-                    {!ready && (
-                        <motion.div
-                            key="loader"
+                    {phase === "loading" && (
+                        <motion.span
+                            key="ring"
                             exit={{ opacity: 0, scale: 0.8 }}
                             transition={{ duration: 0.25 }}
-                            className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3"
+                            className="absolute -inset-3 z-20"
                         >
-                            <motion.span
-                                animate={{ rotate: 360 }}
-                                transition={{
-                                    repeat: Infinity,
-                                    duration: 0.9,
-                                    ease: "linear",
-                                }}
-                                className="size-12 rounded-full border-4 border-border border-t-primary"
-                            />
-                            <span className="text-xs text-white">
-                                Memuat...
-                            </span>
-                        </motion.div>
+                            <span className="block size-full animate-spin rounded-full border-4 border-border/40 border-t-primary" />
+                        </motion.span>
                     )}
                 </AnimatePresence>
             </div>
+
+            {phase === "loading" && (
+                <p className="absolute bottom-10 left-0 right-0 text-center text-xs text-white/80">
+                    Memuat {Math.round((done / total) * 100)}%
+                </p>
+            )}
         </div>
     );
 }
