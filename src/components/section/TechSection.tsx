@@ -29,7 +29,6 @@ const HIDE_PROJECT_COUNT = new Set([
     "Claude Code",
 ]);
 
-
 const rowVariants: Variants = {
     hidden: { opacity: 0, y: 16 },
     show: {
@@ -147,7 +146,7 @@ export default function TechSection() {
                                                 }
                                                 onBlur={hideTooltip}
                                                 className={cn(
-                                                    "flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-background",
+                                                    "flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-amber-100/20",
                                                     "transition-transform duration-200 ease-out",
                                                     isActive &&
                                                         "scale-110 border-accent",

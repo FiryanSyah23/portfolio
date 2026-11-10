@@ -21,10 +21,13 @@ import {
 } from "motion/react";
 import Intro from "./Intro";
 import { menus } from "@/data/menus";
+import ThemeToggle from "./ThemeToggle";
+import ExperienceSection from "./section/ExperienceSection";
 
 const sectionComponents: Record<string, React.ComponentType<SectionProps>> = {
     home: HomeSection,
     about: AboutSection,
+    experience: ExperienceSection,
     skills: TechSection,
     projects: PortfolioSection,
     contact: ContactSection,
@@ -62,14 +65,14 @@ export default function Homepage() {
             setCloseProfile(savedCloseProfile === "true");
         }
 
-        // hint hanya tampil kalau user belum pernah menekan tombol toggle
-        // setShowHint(localStorage.getItem("hideToggleHint") !== "true");
+        setShowHint(localStorage.getItem("hideToggleHint") !== "true");
 
         setIntroStatus(
             sessionStorage.getItem("introSeen") ? "done" : "playing",
         );
 
-        setShowHint(true);
+        // test
+        // setShowHint(true);
         // setIntroStatus("playing");
     }, []);
 
@@ -100,14 +103,13 @@ export default function Homepage() {
         setIntroStatus("revealing");
     }
 
-    function handleIntroDone() {
-        setIntroStatus("done");
-    }
-
     return (
         <MotionConfig reducedMotion="user">
             {(introStatus === "playing" || introStatus === "revealing") && (
-                <Intro onReveal={handleIntroReveal} onDone={handleIntroDone} />
+                <Intro
+                    onReveal={handleIntroReveal}
+                    onDone={() => setIntroStatus("done")}
+                />
             )}
             {(introStatus === "revealing" || introStatus === "done") && (
                 <motion.div
@@ -244,7 +246,6 @@ export default function Homepage() {
 
                     {/* Content Area */}
                     <main className="relative flex min-h-0 min-w-0 flex-1">
-                        {/* Tombol toggle profil + hint (hanya desktop) */}
                         <div className="pointer-events-none absolute left-0 top-0 z-20 hidden h-10 items-center md:flex">
                             <motion.button
                                 type="button"
@@ -312,12 +313,15 @@ export default function Homepage() {
                                 )}
                             </AnimatePresence>
                         </div>
+                        <div className="absolute right-0 top-0 z-20">
+                            <ThemeToggle />
+                        </div>
 
                         <motion.div
                             {...fadeInProps(1)}
                             className="min-h-0 min-w-0 flex-1"
                         >
-                            <AnimatePresence mode="wait" initial={false}>
+                            <AnimatePresence mode="wait">
                                 {ActiveSection && (
                                     <motion.div
                                         key={sectionMenu}
@@ -328,7 +332,7 @@ export default function Homepage() {
                                             duration: 0.2,
                                             ease: "easeOut",
                                         }}
-                                        className="h-full px-2 pb-2 pt-4 md:pb-4 md:px-8 md:pt-10"
+                                        className="h-full px-2 pb-2 pt-10 md:pb-4 md:px-8 md:pt-10 overflow-hidden"
                                     >
                                         <ActiveSection
                                             key={sectionParam}

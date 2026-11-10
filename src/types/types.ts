@@ -36,3 +36,16 @@ export type TechStack = {
     icon: string;
     items: TechItem[];
 };
+
+export type Experience = {
+    role: string;
+    place: string;
+    period: string;
+    desc: string;
+};
+
+export type Testimonial = {
+    name: string;
+    role: string;
+    quote: string;
+};

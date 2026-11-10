@@ -8,6 +8,7 @@ import { SectionProps } from "../../types/types";
 import { useScrollingIndicator } from "@/hooks/useScrollingIndicator";
 import { motion } from "motion/react";
 import { fadeUp, staggerContainer } from "@/lib/motionVariants";
+import RingingButton from "../RingingButton";
 
 export default function HomeSection({ onNavigate }: SectionProps) {
     const scrollRef = useScrollingIndicator<HTMLElement>();
@@ -89,35 +90,30 @@ export default function HomeSection({ onNavigate }: SectionProps) {
                     className="text-3xl font-bold lg:text-4xl"
                 >
                     Wujudkan Website Impianmu,{" "}
-                    <span className="text-accent">Cepat dan Interaktif</span>
+                    <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+                        Cepat dan Interaktif
+                    </span>
                 </motion.h2>
 
                 <motion.p
                     variants={fadeUp}
                     className="max-w-xl text-foreground/80"
                 >
-                    Saya membantu mewujudkan ide dan kebutuhan digitalmu menjadi
-                    website yang modern, responsif, dan interaktif. Dengan
-                    mengutamakan desain yang menarik, performa yang optimal,
-                    serta pengalaman pengguna yang nyaman. Mari wujudkan website
-                    impianmu bersama!
+                    Ubah ide dan kebutuhan digitalmu menjadi website yang
+                    modern, responsif, dan interaktif. Yuk, wujudkan bersama!
                 </motion.p>
 
                 <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
                     <button
                         type="button"
-                        onClick={() => onNavigate("projects")}
+                        onClick={() => onNavigate("about")}
                         className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition duration-300 hover:bg-accent"
                     >
-                        Lihat Proyek
+                        Tentang Saya
                     </button>
-                    <button
-                        type="button"
-                        onClick={() => onNavigate("contact")}
-                        className="rounded-lg border border-border px-5 py-2.5 font-medium transition duration-300 hover:bg-accent hover:text-white"
-                    >
+                    <RingingButton onClick={() => onNavigate("contact")}>
                         Hubungi Saya
-                    </button>
+                    </RingingButton>
                 </motion.div>
 
                 <motion.dl variants={fadeUp} className="flex gap-8 pt-4">

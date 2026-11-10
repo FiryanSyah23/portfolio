@@ -25,12 +25,19 @@
     --font-sans: var(--font-poppins);
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --background: #1a1610;
+    --foreground: #f5ecd6;
+    --bg-dark: #0f0c08;
+    --primary: #e4a827;
+    --second: #231e15;
+    --support: #a07b1c;
+    --accent: #b8860b;
+    --border: #4a3d1f;
+}
 
 @utility scrollbar-auto-hide {
     scrollbar-width: thin;
@@ -49,5 +56,5 @@ body {
     background-image:
         linear-gradient(#e4a82717 1px, transparent 1px),
         linear-gradient(90deg, #e4a82717 1px, transparent 1px);
-    background-size: 60 60px;
+    background-size: 64px 65;
 }

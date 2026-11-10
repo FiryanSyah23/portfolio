@@ -89,7 +89,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
     width: "device-width",
     initialScale: 1,
-    themeColor: "#090040",
+    themeColor: "#fff9e6",
 };
 
 const jsonLd = {
@@ -111,7 +111,7 @@ const jsonLd = {
             jobTitle: "Web Developer & Software Engineer",
             description: DESCRIPTION,
             url: SITE_URL,
-            image: `${SITE_URL}/profile.png`,
+            image: `${SITE_URL}/profile.webp`,
             knowsAbout: [
                 "Next.js",
                 "React",
@@ -140,7 +140,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             lang="id"
             data-scroll-behavior="smooth"
             className={`${poppins.variable} h-full antialiased`}
+            suppressHydrationWarning
         >
+            <head>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}`,
+                    }}
+                />
+            </head>
             <body className="min-h-full flex flex-col max-lg:px-2">
                 <script
                     type="application/ld+json"

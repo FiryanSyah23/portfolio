@@ -5,6 +5,7 @@ import { useScrollingIndicator } from "@/hooks/useScrollingIndicator";
 import { SectionProps } from "@/types/types";
 import { motion } from "motion/react";
 import { fadeUp, staggerContainer } from "@/lib/motionVariants";
+import RingingButton from "../RingingButton";
 
 const focusAreas = [
     {
@@ -58,7 +59,7 @@ export default function AboutSection({ onNavigate }: Partial<SectionProps>) {
                             <motion.li
                                 key={area.title}
                                 variants={fadeUp}
-                                className="flex flex-col gap-2 rounded-xl border border-border/50 p-4"
+                                className="flex flex-col gap-2 rounded-xl border border-border/50 p-4 hover:border-accent hover:shadow-md hover:shadow-accent/20 transition-[translate,box-shadow,border-color] duration-300 hover:-translate-y-1"
                             >
                                 <i
                                     className={`${area.icon} ri-xl text-accent`}
@@ -85,39 +86,32 @@ export default function AboutSection({ onNavigate }: Partial<SectionProps>) {
                 {onNavigate && (
                     <motion.div
                         variants={fadeUp}
-                        className="flex flex-wrap gap-3"
+                        className="flex flex-wrap gap-3 *:text-sm"
                     >
                         <button
                             type="button"
+                            onClick={() => onNavigate("experience")}
+                            className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:bg-accent"
+                        >
+                            Pengalaman Kerja
+                        </button>
+                        <button
+                            type="button"
                             onClick={() => onNavigate("skills")}
-                            className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:opacity-90"
+                            className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:bg-accent"
                         >
                             Lihat Skills
                         </button>
                         <button
                             type="button"
                             onClick={() => onNavigate("projects")}
-                            className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:opacity-90"
+                            className="rounded-lg bg-primary px-5 py-2.5 font-medium text-white transition hover:bg-accent"
                         >
                             Lihat Proyek
                         </button>
-                        <motion.button
-                            type="button"
-                            onClick={() => onNavigate("contact")}
-                            initial={{ rotate: 0 }}
-                            animate={{
-                                rotate: [0, 10, 0, 12, 0],
-                                transition: {
-                                    duration: 1.5,
-                                    ease: "easeInOut",
-                                    repeat: Infinity,
-                                    repeatDelay: 0.5,
-                                },
-                            }}
-                            className="rounded-lg border border-border px-5 py-2.5 font-medium transition-colors duration-300 hover:bg-accent hover:text-white"
-                        >
+                        <RingingButton onClick={() => onNavigate("contact")}>
                             Hubungi Saya
-                        </motion.button>
+                        </RingingButton>
                     </motion.div>
                 )}
             </motion.div>

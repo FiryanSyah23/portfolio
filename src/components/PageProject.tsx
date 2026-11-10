@@ -7,7 +7,7 @@ import { useState } from "react";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 
 const badgeClass =
-    "text-[10px] bg-foreground py-1 px-1.5 rounded-full text-white";
+    "text-[10px] bg-foreground py-1 px-1.5 rounded-full text-second";
 
 const slideVariants: Variants = {
     enter: (direction: number) => ({
@@ -190,7 +190,7 @@ export default function PageProject({
                     >
                         <i className="ri-arrow-go-back-line"></i> Kembali
                     </motion.button>
-                    {project.demo !== "" && (
+                    {project.demo !== ""  && (
                         <motion.a
                             whileTap={{ scale: 0.96 }}
                             href={project.demo}

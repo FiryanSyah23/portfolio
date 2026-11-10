@@ -184,7 +184,7 @@ export default function ContactSection({ close }: Partial<SectionProps>) {
                                 id="contact-name"
                                 type="text"
                                 required
-                                maxLength={60}
+                                maxLength={40}
                                 autoComplete="name"
                                 value={name}
                                 onChange={(e) =>
