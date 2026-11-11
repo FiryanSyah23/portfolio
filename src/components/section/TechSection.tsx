@@ -108,7 +108,7 @@ export default function TechSection() {
                         <motion.div
                             key={cat.category}
                             variants={rowVariants}
-                            className="flex items-center gap-12 py-3"
+                            className="flex items-center gap-12 py-3 "
                         >
                             <h2 className="w-15 md:w-35 shrink-0 text-xs font-semibold">
                                 {cat.category}
@@ -129,6 +129,7 @@ export default function TechSection() {
                                         <motion.div
                                             key={item.name}
                                             variants={iconPop}
+                                            className={` ${item.projectCount === 0 && !HIDE_PROJECT_COUNT.has(item.name) ? "hidden" : "block"}`}
                                         >
                                             <button
                                                 type="button"

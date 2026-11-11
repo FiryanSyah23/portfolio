@@ -73,62 +73,6 @@ const dataSkills: TechStack[] = [
         ],
     },
 
-    // DEVELOPMENT TOOLS
-    {
-        category: "Development Tools",
-        icon: "ri-tools-line",
-        items: [
-            {
-                name: "Git",
-                logo: "/logo/git.png",
-                description:
-                    "Mengelola versi kode dan melacak perubahan dalam proyek.",
-                startDate: "2025-12-01",
-            },
-            {
-                name: "GitHub",
-                logo: "/logo/github.png",
-                description:
-                    "Menyimpan repositori dan berlatih alur kolaborasi (branch dan pull request).",
-                startDate: "2025-12-01",
-            },
-            {
-                name: "Vite",
-                logo: "/logo/vite.png",
-                description:
-                    "Menjalankan development server dan build aplikasi frontend.",
-                startDate: "2026-03-25",
-            },
-            {
-                name: "Postman",
-                logo: "/logo/postman.svg",
-                description: "Menguji dan mendokumentasikan REST API.",
-                startDate: "2026-04-01",
-            },
-            {
-                name: "Figma",
-                logo: "/logo/figma.png",
-                description:
-                    "Membuat wireframe dan prototipe UI sebelum coding.",
-                startDate: "2026-06-19",
-            },
-            {
-                name: "WordPress",
-                logo: "/logo/wordpress.png",
-                description:
-                    "Membangun website berbasis CMS dengan tema dan plugin untuk kebutuhan klien.",
-                startDate: "2026-01-01",
-            },
-            {
-                name: "Claude Code",
-                logo: "/logo/claude.png",
-                description:
-                    "Asisten AI untuk mempercepat coding dan memahami codebase. Hasilnya selalu saya review dan pahami.",
-                startDate: "2026-01-01",
-            },
-        ],
-    },
-
     // DEPLOYMENT & CLOUD
     {
         category: "Deployment & Cloud",
@@ -251,6 +195,62 @@ const dataSkills: TechStack[] = [
                 description:
                     "Workflow development dan build aplikasi React Native.",
                 startDate: "2026-04-11",
+            },
+        ],
+    },
+
+    // DEVELOPMENT TOOLS
+    {
+        category: "Development Tools",
+        icon: "ri-tools-line",
+        items: [
+            {
+                name: "Git",
+                logo: "/logo/git.png",
+                description:
+                    "Mengelola versi kode dan melacak perubahan dalam proyek.",
+                startDate: "2025-12-01",
+            },
+            {
+                name: "GitHub",
+                logo: "/logo/github.png",
+                description:
+                    "Menyimpan repositori dan berlatih alur kolaborasi (branch dan pull request).",
+                startDate: "2025-12-01",
+            },
+            {
+                name: "Vite",
+                logo: "/logo/vite.png",
+                description:
+                    "Menjalankan development server dan build aplikasi frontend.",
+                startDate: "2026-03-25",
+            },
+            {
+                name: "Postman",
+                logo: "/logo/postman.svg",
+                description: "Menguji dan mendokumentasikan REST API.",
+                startDate: "2026-04-01",
+            },
+            {
+                name: "Figma",
+                logo: "/logo/figma.png",
+                description:
+                    "Membuat wireframe dan prototipe UI sebelum coding.",
+                startDate: "2026-06-19",
+            },
+            {
+                name: "WordPress",
+                logo: "/logo/wordpress.png",
+                description:
+                    "Membangun website berbasis CMS dengan tema dan plugin untuk kebutuhan klien.",
+                startDate: "2026-01-01",
+            },
+            {
+                name: "Claude Code",
+                logo: "/logo/claude.png",
+                description:
+                    "Asisten AI untuk mempercepat coding dan memahami codebase. Hasilnya selalu saya review dan pahami.",
+                startDate: "2026-01-01",
             },
         ],
     },

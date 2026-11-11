@@ -15,7 +15,7 @@ export default function HomeSection() {
     const scrollRef = useScrollingIndicator<HTMLElement>();
     const stats = [
         { label: "Proyek Selesai", value: dataProjects.length },
-        { label: "Pengalaman", value: "2+ Tahun" },
+        { label: "Pengalaman", value: "1+ Tahun" },
     ];
 
     return (
