@@ -96,7 +96,7 @@ export default function PortfolioSection() {
                                         className={cn(
                                             item.fit === "contain"
                                                 ? "object-contain p-1"
-                                                : "object-cover object-top",
+                                                : "object-cover",
                                         )}
                                     />
                                 </motion.div>

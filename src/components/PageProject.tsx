@@ -114,7 +114,7 @@ export default function PageProject({
                                         className={cn(
                                             project.fit === "contain"
                                                 ? "object-contain"
-                                                : "object-cover object-top",
+                                                : "object-cover ",
                                         )}
                                     />
                                 </motion.div>

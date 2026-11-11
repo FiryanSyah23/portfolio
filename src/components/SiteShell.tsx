@@ -338,7 +338,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                                         duration: 0.2,
                                         ease: "easeOut",
                                     }}
-                                    className="h-full *:pb-4 px-2 pt-10 md:pb-4 md:px-8 overflow-hidden"
+                                    className="h-full *:pb-3 px-2 pt-10 md:pb-4 md:px-8 overflow-hidden"
                                 >
                                     {children}
                                 </motion.div>
