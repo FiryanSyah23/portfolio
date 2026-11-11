@@ -23,6 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             canonical: `/projects/${slug}`,
         },
         openGraph: {
+            type: "article",
+            url: `/projects/${slug}`,
+            title: project.title,
+            description: project.description,
             images: [project.image],
         },
     };
@@ -30,11 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 async function ProjectContent({ params }: Props) {
     const { slug } = await params;
-
     const project = dataProjects.find((p) => p.slug === slug);
-
     if (!project) notFound();
-
     return <ProjectDetail project={project} />;
 }
 

@@ -9,7 +9,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import RingingButton from "../RingingButton";
-import { SectionProps } from "@/types/types";
 import { useSection } from "../SiteShell";
 
 const TOOLTIP_WIDTH = 224;
@@ -97,9 +96,9 @@ export default function TechSection() {
                 animate="show"
                 className="flex flex-col gap-2"
             >
-                <motion.h2 variants={fadeUp} className="text-2xl font-bold">
+                <motion.h1 variants={fadeUp} className="text-2xl font-bold">
                     Tools & Teknologi Pengembangan{" "}
-                </motion.h2>
+                </motion.h1>
 
                 <motion.div
                     variants={staggerContainer}
@@ -111,9 +110,9 @@ export default function TechSection() {
                             variants={rowVariants}
                             className="flex items-center gap-12 py-3"
                         >
-                            <h3 className="w-15 md:w-35 shrink-0 text-xs font-semibold">
+                            <h2 className="w-15 md:w-35 shrink-0 text-xs font-semibold">
                                 {cat.category}
-                            </h3>
+                            </h2>
 
                             <i
                                 className="ri-contract-right-line mt-2"
@@ -206,9 +205,7 @@ export default function TechSection() {
                         }}
                         className="pointer-events-none fixed z-50 flex flex-col gap-1 rounded-xl border border-border bg-background p-3 text-center shadow-lg"
                     >
-                        <h4 className="text-sm font-semibold">
-                            {tooltip.name}
-                        </h4>
+                        <p className="text-sm font-semibold">{tooltip.name}</p>
                         <p className="text-xs text-foreground/70">
                             {tooltip.description}
                         </p>

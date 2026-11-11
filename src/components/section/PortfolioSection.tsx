@@ -105,9 +105,9 @@ export default function PortfolioSection() {
                                 <div className="flex-1 flex flex-col gap-2 justify-between">
                                     <div className="flex gap-2 flex-col">
                                         <div className="flex items-center justify-between">
-                                            <h3 className="text-sm font-bold">
+                                            <h2 className="text-sm font-bold">
                                                 {item.title}
-                                            </h3>
+                                            </h2>
                                             <span className="text-xs text-foreground/50">
                                                 {item.category}
                                             </span>

@@ -2,7 +2,6 @@
 
 import dataProjects from "@/data/projects";
 import { useScrollingIndicator } from "@/hooks/useScrollingIndicator";
-import { SectionProps } from "@/types/types";
 import { motion } from "motion/react";
 import { fadeUp, staggerContainer } from "@/lib/motionVariants";
 import RingingButton from "../RingingButton";
@@ -33,7 +32,7 @@ export default function AboutSection() {
     return (
         <section
             ref={scrollRef}
-            className="h-full overflow-y-auto  pr-2 scrollbar-auto-hide"
+            className="h-full overflow-y-auto scrollbar-auto-hide "
         >
             <motion.div
                 variants={staggerContainer}
@@ -42,7 +41,7 @@ export default function AboutSection() {
                 className="flex flex-col gap-6"
             >
                 <motion.div variants={fadeUp} className="flex flex-col gap-3">
-                    <h2 className="text-4xl font-bold">Halo, saya Firyan</h2>
+                    <h1 className="text-4xl font-bold">Halo, saya Firyan</h1>
                     <p className="max-w-xl text-foreground/80">
                         Saya seorang Software Engineer yang antusias dengan
                         dunia teknologi. Senang mempelajari hal baru,

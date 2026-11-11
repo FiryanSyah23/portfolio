@@ -21,7 +21,7 @@ export default function HomeSection() {
     return (
         <section
             ref={scrollRef}
-            className="flex h-full flex-col justify-start overflow-y-auto  max-md:pr-2 md:justify-center md:overflow-visible scrollbar-auto-hide"
+            className="flex h-full flex-col justify-start overflow-y-auto md:justify-center md:overflow-visible scrollbar-auto-hide pb-10"
         >
             <motion.div
                 variants={staggerContainer}
@@ -54,16 +54,21 @@ export default function HomeSection() {
                         />
                     </div>
 
-                    <ul className="flex flex-wrap justify-center gap-2">
-                        {proTech.map((tech) => (
-                            <li
-                                key={tech}
-                                className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-white"
-                            >
-                                {tech}
-                            </li>
-                        ))}
-                    </ul>
+                    <div className="flex flex-col items-center">
+                        <p className="text-sm font-semibold">
+                            Profesional Tech
+                        </p>
+                        <ul className="flex flex-wrap justify-center gap-2">
+                            {proTech.map((tech) => (
+                                <li
+                                    key={tech}
+                                    className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-white"
+                                >
+                                    {tech}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
                     <a
                         href="/file/CV_Firyan_Syah.pdf"
@@ -86,7 +91,7 @@ export default function HomeSection() {
                     Tersedia untuk proyek freelance
                 </motion.span>
 
-                <motion.h2
+                <motion.h1
                     variants={fadeUp}
                     className="text-3xl font-bold lg:text-4xl"
                 >
@@ -94,7 +99,7 @@ export default function HomeSection() {
                     <span className="bg-linear-to-r from-primary to-support bg-clip-text text-transparent">
                         Cepat dan Interaktif
                     </span>
-                </motion.h2>
+                </motion.h1>
 
                 <motion.p
                     variants={fadeUp}

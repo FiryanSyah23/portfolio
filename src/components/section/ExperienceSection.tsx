@@ -19,9 +19,9 @@ export default function ExperienceSection() {
                 animate="show"
                 className="flex h-full flex-col gap-6"
             >
-                <motion.h2 variants={fadeUp} className="text-2xl font-bold">
+                <motion.h1 variants={fadeUp} className="text-2xl font-bold">
                     Perjalanan <span className="text-accent">Pengalaman</span>
-                </motion.h2>
+                </motion.h1>
 
                 <div
                     ref={scrollRef}
@@ -42,7 +42,9 @@ export default function ExperienceSection() {
                                 <p className="text-xs text-foreground/60">
                                     {exp.period}
                                 </p>
-                                <h3 className="font-semibold">{exp.role}</h3>
+                                <h2 className="font-semibold">
+                                    {exp.role}
+                                </h2>
                                 <p className="text-sm text-support">
                                     {exp.place}
                                 </p>

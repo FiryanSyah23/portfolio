@@ -111,8 +111,6 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                         />
                     )}
 
-                    {/* key berubah saat reveal -> animasi masuk di dalamnya main ulang
-                        tepat saat intro selesai, bukan diam-diam di belakang overlay */}
                     <motion.div
                         key={shellVisible ? "on" : "off"}
                         inert={!shellVisible}
@@ -125,7 +123,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                         transition={{ duration: 0.5, ease: "easeOut" }}
                         className={cn(
                             "bg-second w-full max-w-260 rounded-2xl shadow-accent/30 shadow-[0px_0px_10px] border-2 border-border",
-                            "h-[calc(100dvh-1rem)] md:h-150",
+                            "h-[calc(100dvh-1rem)] md:max-h-150",
                             "flex flex-col-reverse overflow-hidden md:flex-row",
                         )}
                     >
@@ -142,7 +140,6 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                                     {...fadeInProps(index * 0.15)}
                                     className="flex-1 md:w-full md:flex-none"
                                 >
-                                    {/* button -> Link: sekarang jadi <a href>, bisa dirayapi bot */}
                                     <Link
                                         href={menu.href}
                                         scroll={false}
@@ -197,7 +194,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                                 transition={{ duration: toggleDuration }}
                                 className="flex h-full w-75 flex-col items-center justify-center gap-4 px-6 py-4"
                             >
-                                <div className="size-50 overflow-hidden rounded-full border-2 border-border bg-primary">
+                                <div className="size-50  overflow-hidden rounded-full border-2 border-border bg-primary">
                                     <Image
                                         src="/profile.webp"
                                         alt="Foto profil Firyan Syah"
@@ -218,6 +215,22 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                                     />
                                 </div>
 
+                                <div className="flex w-full flex-col items-center gap-2">
+                                    <p className="text-sm font-semibold">
+                                        Profesional Tech{" "}
+                                    </p>
+                                    <div className="flex gap-2">
+                                        {proTech.map((items) => (
+                                            <span
+                                                key={items}
+                                                className="rounded-full bg-primary px-2 py-0.5 text-xs font-semibold text-white"
+                                            >
+                                                {items}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
                                 <div className="flex w-full flex-wrap justify-center gap-1">
                                     <a
                                         href="/file/CV_Firyan_Syah.pdf"
@@ -234,22 +247,6 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                                         ></i>
                                         Lihat CV
                                     </a>
-                                </div>
-
-                                <div className="flex w-full flex-col items-center gap-2">
-                                    <h2 className="text-sm font-semibold">
-                                        Profesional Tech{" "}
-                                    </h2>
-                                    <div className="flex gap-2">
-                                        {proTech.map((items) => (
-                                            <span
-                                                key={items}
-                                                className="rounded-full bg-primary px-2 py-0.5 text-xs font-semibold text-white"
-                                            >
-                                                {items}
-                                            </span>
-                                        ))}
-                                    </div>
                                 </div>
                             </motion.div>
                         </motion.aside>
@@ -341,7 +338,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                                         duration: 0.2,
                                         ease: "easeOut",
                                     }}
-                                    className="h-full px-2 pb-2 pt-10 md:pb-4 md:px-8 md:pt-10 overflow-hidden"
+                                    className="h-full *:pb-4 px-2 pt-10 md:pb-4 md:px-8 overflow-hidden"
                                 >
                                     {children}
                                 </motion.div>

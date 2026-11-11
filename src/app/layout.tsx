@@ -4,6 +4,7 @@ import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 import GoogleTranslateFix from "@/hooks/GoogleTranslateFix";
 import SiteShell from "@/components/SiteShell";
+import Fireflies from "@/components/Fireflies";
 
 const poppins = Poppins({
     variable: "--font-poppins",
@@ -158,6 +159,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                     }}
                 />
                 <GoogleTranslateFix />
+                <Fireflies />
                 <SiteShell>{children}</SiteShell>
             </body>
         </html>

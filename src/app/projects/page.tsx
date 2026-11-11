@@ -4,7 +4,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "Proyek Pengembangan",
     description:
-        "Firyan Syah, web developer di Banda Aceh yang fokus pada Next.js, React Native, dan IoT.",
+        "Kumpulan proyek website, aplikasi kasir (POS), dan IoT karya Firyan Syah: dari website desa sampai aplikasi mobile offline.",
     alternates: { canonical: "/projects" },
 };
 

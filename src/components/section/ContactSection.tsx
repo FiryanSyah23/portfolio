@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { SectionProps } from "@/types/types";
 import { useScrollingIndicator } from "@/hooks/useScrollingIndicator";
 import { AnimatePresence, motion } from "motion/react";
 import { fadeUp, staggerContainer } from "@/lib/motionVariants";
@@ -118,10 +117,10 @@ export default function ContactSection() {
                 className="flex flex-col gap-6"
             >
                 <motion.div variants={fadeUp} className="flex flex-col gap-3">
-                    <h2 className="text-2xl font-bold">
+                    <h1 className="text-2xl font-bold">
                         Punya ide atau proyek?{" "}
                         <span className="text-accent">Yuk ngobrol</span>
-                    </h2>
+                    </h1>
                     <p className="max-w-xl text-sm text-foreground/80">
                         Saya terbuka untuk proyek freelance, kolaborasi, maupun
                         sekadar diskusi soal teknologi. Pilih kanal yang paling
@@ -176,7 +175,7 @@ export default function ContactSection() {
                         onSubmit={handleSubmit}
                         className="flex flex-col gap-3 rounded-xl border border-border/50 p-4"
                     >
-                        <h3 className="font-semibold">Kirim pesan langsung</h3>
+                        <h2 className="font-semibold">Kirim pesan langsung</h2>
 
                         <div className="flex flex-col gap-1">
                             <label htmlFor="contact-name" className="text-xs">
